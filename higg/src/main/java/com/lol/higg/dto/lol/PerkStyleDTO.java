@@ -12,7 +12,7 @@ import java.util.List;
 public class PerkStyleDTO {
 
     private String description;
-    private List[PerkStyleSelectionDTO] selections;
+    private List<PerkStyleSelectionDTO> selections;
     private int style;
 
 }

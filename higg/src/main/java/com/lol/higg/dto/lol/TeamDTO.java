@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 public class TeamDTO {
 
-    private List[BanDTO] bans;
+    private List<BanDTO> bans;
     private ObjectivesDTO objectives;
     private int teamId;
     private boolean win;
