@@ -7,15 +7,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class CommentDTO {
-    //닉네임
-    private String nick;
-
+public class HiggMemberDTO {
+    //아이디
+    private String uid;
     //비밀번호
     private String pw;
-    //댓글
-    private String comment;
-    //게시글고유번호(출력시 )
-    private int searchNum;
+    //자기 롤 닉네임
+    private String SearchNum;
 
 }

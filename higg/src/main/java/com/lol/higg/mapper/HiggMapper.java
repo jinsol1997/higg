@@ -1,6 +1,6 @@
 package com.lol.higg.mapper;
 
-import com.lol.higg.dto.CommentDTO;
+import com.lol.higg.dto.HiggCommentDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
 public interface HiggMapper {
 
     //전체 출력
-    List<CommentDTO> selectAll();
-    // 검색 출력
-    List<CommentDTO> selectByOption();
+    List<HiggCommentDTO> selectAll();
+    // 검색된 게시글에 댓글 들
+    List<HiggCommentDTO> selectByOption();
 
 
 }
