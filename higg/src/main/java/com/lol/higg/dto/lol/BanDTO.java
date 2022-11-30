@@ -1,4 +1,4 @@
-package com.lol.higg.dto.down;
+package com.lol.higg.dto.lol;
 
 import lombok.*;
 
