@@ -18,6 +18,17 @@ comment varchar 댓글
 uniqueNum varchar 게시글 번호
 
 
+higg_Commend 데이터베이스 ( 서치한 게시글에 댓글 DB )
+
+create table higg_Command(
+	idx int Not null auto_increment,
+    nick varchar(100),
+    pw varchar(100),
+    reply varchar(100),
+    searchNum varchar(100),
+    primary key(idx)
+)engine=MyISAM charset=utf8mb4;
+
 
 
 
