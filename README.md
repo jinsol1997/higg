@@ -20,6 +20,7 @@ uniqueNum varchar 게시글 번호
 
 higg_Commend 데이터베이스 ( 서치한 게시글에 댓글 DB )
 
+테스트DB
 create table higg_Command(
 	idx int Not null auto_increment,
     nick varchar(100),
