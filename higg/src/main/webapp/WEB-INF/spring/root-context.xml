@@ -15,7 +15,7 @@
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/project"></property>
         <property name="username" value="scott"></property>
-        <property name="password" value="Test!!!!"></property>
+        <property name="password" value="tiger"></property>
         <property name="dataSourceProperties">
             <props>
                 <prop key="cachePrepStmts">true</prop>
