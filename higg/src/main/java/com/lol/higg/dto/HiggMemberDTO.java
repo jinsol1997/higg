@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class HiggMemberDTO {
+    //사용자 DTO
+
     //아이디
     private String uid;
     //비밀번호

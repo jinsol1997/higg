@@ -7,6 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface HiggCommentMapper {
+    //댓글Mapper
 
     //전체
     List<HiggCommentDTO> selectAll();

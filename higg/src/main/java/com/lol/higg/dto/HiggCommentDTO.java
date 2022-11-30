@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class HiggCommentDTO {
+    //댓글 DTO
+
     //댓글 작성한 아이디
     private String uid;
     //게시물에 작성한 댓글
