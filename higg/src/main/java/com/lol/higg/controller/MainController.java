@@ -1,7 +1,7 @@
 package com.lol.higg.controller;
 
 import com.google.gson.Gson;
-import com.lol.higg.dto.SummonerDTO;
+import com.lol.higg.dto.lol.SummonerDTO;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
