@@ -8,8 +8,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @Log4j2
 @Controller
@@ -17,11 +15,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class MainController {
 
     @GetMapping
-    public void mainForm(){}
+    public void mainForm() {
+    }
 
     @PostMapping
     @ResponseBody
-    public String search(@RequestParam("searchName") String searchName){
+    public String search(@RequestParam("searchName") String searchName) {
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -42,9 +41,19 @@ public class MainController {
         SummonerDTO summonerDTO = gson.fromJson(result, SummonerDTO.class);
 
 
+        String puuid = summonerDTO.getPuuid();
+
         log.info(summonerDTO);
 
-        return result;
+        url = "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=20&api_key=RGAPI-a52aa3a0-e3b6-4f78-829d-e280b142e8d8";
+
+        result = restTemplate.getForObject(url, String.class, httpHeaders);
+
+        String[] gameCode = gson.fromJson(result, String[].class);
+
+        log.info(gameCode);
+
+        return puuid;
     }
 
 }
