@@ -11,6 +11,12 @@
     <title>HIGG</title>
 </head>
 <body>
+<h1>Main Form</h1>
+
+<form method="post">
+<input type="text" name="searchName" placeholder="검색할 소환사명을 입력해주세요.">
+<input type="submit" value="검색">
+</form>
 
 </body>
 </html>
