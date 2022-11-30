@@ -12,5 +12,5 @@ import java.util.List;
 public class PerksDTO {
 
     private PerkStatsDTO championId;
-    private List[PerkStyleDTO] pickTurn;
+    private List<PerkStyleDTO> pickTurn;
 }
