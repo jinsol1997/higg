@@ -45,7 +45,7 @@ public class MainController {
             log.info(gameCode[i]);
         }
 
-        
+
 
         return puuid;
     }
