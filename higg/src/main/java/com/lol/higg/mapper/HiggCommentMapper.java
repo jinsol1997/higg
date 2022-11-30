@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface HiggMapper {
+public interface HiggCommentMapper {
 
-    //전체 출력
+    //전체
     List<HiggCommentDTO> selectAll();
     // 검색된 게시글에 댓글 들
     List<HiggCommentDTO> selectByOption();
