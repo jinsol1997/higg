@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>HIGG</title>
@@ -90,7 +91,9 @@
                 </td>
                 <td>
                         ${participants.kills} / ${participants.deaths} / ${participants.assists}
-                    <span class="badge badge-primary">${(participants.kills + participants.assists) / participants.deaths}</span>
+                    <span class="badge badge-primary">
+                        <fmt:formatNumber value="${(participants.kills + participants.assists) / participants.deaths}" pattern="0.00"></fmt:formatNumber>
+                    </span>
                 </td>
                 <td>
                     <c:if test="${participants.item0 != 0}">
