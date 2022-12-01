@@ -14,7 +14,4 @@ public class HiggMemberDTO {
     private String uid;
     //비밀번호
     private String pw;
-    //자기 롤 닉네임
-    private String SearchNum;
-
 }
