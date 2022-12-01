@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>HIGG</title>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 </head>
 <body>
@@ -22,15 +22,6 @@
     <input type="text" name="searchName" placeholder="검색할 소환사명을 입력해주세요.">
     <input type="submit" value="검색">
 </form>
-
-<script type="text/javascript">
-    if (typeof jQuery == 'undefined') {
-        var script = document.createElement('script');
-        script.type = "text/javascript";
-        script.src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js";
-        document.getElementsByTagName('head')[0].appendChild(script);
-    }
-</script>
 <%--
 
 세션없으면
@@ -47,11 +38,15 @@
             <table>
                 <tr>
                     <td>아이디</td>
-                    <td><input type="text" name="userId" id="userId" placeholder="10글자" maxlength="10"></td>
+                    <td><input type="text" name="uid" id="uid" placeholder="10글자" maxlength="10"></td>
                 </tr>
                 <tr>
                     <td>비밀번호</td>
-                    <td><input type="password" name="passwd" id="passwd" maxlength="20"></td>
+                    <td><input type="password" name="pw" id="pw" maxlength="20"></td>
+                </tr>
+                <tr>
+                    <td>LOL 닉네임</td>
+                    <td><input type="text" name="SearchNum" id="SearchNum" maxlength="50"></td>
                 </tr>
                 <c:if test="${msg == '실패'}">
                     <tr>
@@ -77,14 +72,23 @@
 <script>
     $(document).ready(function (e) {
         $('#login').click(function () {
-            if ($.trim($('#userId').val()) == '') {
+            if ($.trim($('#uid').val()) == '') {
                 alert("아이디를 입력해 주세요.");
-                $('#userId').focus();
+                $('#uid').focus();
                 return;
-            } else if ($.trim($('#passwd').val()) == ''){
+            } else if ($.trim($('#pw').val()) == '') {
                 alert("비밀번호를 입력해 주세요.");
-                $('#passwd').focus();
+                $('#pw').focus();
                 return;
+            }
+            if ($.trim($('#SearchNum').val()) == '') {
+
+                var returnValue = confirm("LOL 닉네임을 입력하지 않았습니다. 계속 진행 하시겠습니까?")
+                // 선택 confirm에서 확인을 누르면 returneValue에 true가 들어가 아래 if문을 넘어가게됨
+                if (!returnValue) {
+                    $('#SearchNum').focus();
+                    return;
+                }
             }
             $('#loginFrm').submit();
         });
