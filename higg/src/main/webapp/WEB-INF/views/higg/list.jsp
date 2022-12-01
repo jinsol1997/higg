@@ -14,6 +14,13 @@
     <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap/offcanvas.css" rel="stylesheet">
 
+    <style>
+        img{
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+
 </head>
 <body class="bg-light">
 
@@ -41,13 +48,23 @@
              src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${summonerDTO.profileIconId}.png"
              alt="" width="48" height="48">
         <div class="lh-100">
-            <h6 class="mb-0 text-white lh-100">HIGG 검색 결과</h6>
+            <h6 class="mb-0 text-white lh-100">${summonerDTO.name}</h6>
             <small>${summonerDTO.summonerLevel}</small>
         </div>
     </div>
 
     <c:forEach var="matchDTO" items="${matchDTO}">
         <table class="table table-sm table-secondary table-bordered text-center table-striped">
+            <thead>
+            <th>승패</th>
+            <th>닉네임</th>
+            <th>챔피언</th>
+            <th>스펠</th>
+            <th>k/d/a</th>
+            <th>아이템</th>
+            <th>총 딜량</th>
+            <th>획득한 골드</th>
+            </thead>
             <c:forEach var="participants" items="${matchDTO.info.participants}" varStatus="loop">
 
                 <c:if test="${loop.count > 5}">
@@ -71,7 +88,10 @@
                 <td>
 
                 </td>
-                <td>${participants.kills} / ${participants.deaths} / ${participants.assists}</td>
+                <td>
+                        ${participants.kills} / ${participants.deaths} / ${participants.assists}
+                    <span class="badge badge-primary">${(participants.kills + participants.assists) / participants.deaths}</span>
+                </td>
                 <td>
                     <c:if test="${participants.item0 != 0}">
                         <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${participants.item0}.png">
@@ -95,6 +115,9 @@
                         <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${participants.item6}.png">
                     </c:if>
                 </td>
+
+                <td>${participants.totalDamageDealtToChampions}</td>
+                <td>${participants.goldEarned + 500}</td>
 
                 </tr>
 
