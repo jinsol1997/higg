@@ -54,7 +54,7 @@
         </form>
     </c:when>
     <c:otherwise>
-        <h3>${sessionScope.loginInfo}님 환영합니다.</h3>
+        <h3>${sessionScope.loginInfo.uid}님 환영합니다.</h3>
         <a href="/logout">로그아웃</a>
     </c:otherwise>
 </c:choose>
