@@ -130,9 +130,34 @@
         <br><br><br>
     </c:forEach>
 
+    </div>
+    <style>
+        #text {
+            position: fixed;
+            left: 1550px;
+            top: 150px;
+        }
+        #tr_mar{
+            margin: 10px;
+        }
+    </style>
+    <div id="text">
+        <table>
+            <th>댓글</th>
+            <c:forEach items="10">
+                <tr id="tr_mar">
+                    <td>아이디</td>
+                    <td>댓글내용</td>
+                </tr>
+
+
+            </c:forEach>
+        </table>
+        <br><br><br>
+
+
 
     </div>
-
 </main>
 
 
