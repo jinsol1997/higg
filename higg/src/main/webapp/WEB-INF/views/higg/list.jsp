@@ -18,7 +18,7 @@
 <body class="bg-light">
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand mr-auto mr-lg-0" href="#">HIGG</a>
+    <a class="navbar-brand mr-auto mr-lg-0" href="/higg/main">HIGG</a>
     <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,7 +26,7 @@
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0" method="post">
+        <form class="form-inline my-2 my-lg-0" method="post" action="/higg/main">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchName">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -50,13 +50,20 @@
         <table class="table table-sm table-secondary table-bordered text-center table-striped">
             <c:forEach var="participants" items="${matchDTO.info.participants}" varStatus="loop">
 
-                <c:if test="${loop.count <= 5}">
+                <c:if test="${loop.count > 5}">
                     <tr style="background-color: #fff1f3">
                 </c:if>
-                <c:if test="${loop.count > 5}">
+                <c:if test="${loop.count <= 5}">
                     <tr style="background-color: #ecf2ff">
                 </c:if>
-
+                <td>
+                    <c:if test="${participants.win}">
+                        <span class="badge bg-primary">승리</span>
+                    </c:if>
+                    <c:if test="${!participants.win}">
+                        <span class="badge bg-danger">패배</span>
+                    </c:if>
+                </td>
                 <td>${participants.summonerName}</td>
                 <td><img
                         src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/${participants.championName}.png">
