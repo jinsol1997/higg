@@ -23,18 +23,15 @@ public class LoginController {
     public String login(
             @RequestParam("uid") String uid,
             @RequestParam("pw") String pw,
-            @RequestParam("searchNum") String searchNum,
             HttpServletRequest request
     ) {
         String uid2 = request.getParameter("uid");
         String pw2 = request.getParameter("pw");
-        String searchNum2 = request.getParameter("searchNum");
 
         log.info("uid => " + uid2);
         log.info("pw  => " + pw2);
-        log.info("SearchNum  => " + SearchNum2);
 
-        boolean memberDTO = memberService.LoginService(uid, pw, searchNum);
+        boolean memberDTO = memberService.LoginService(uid, pw);
 
         request.getSession().setAttribute("loginInfo", uid);
 

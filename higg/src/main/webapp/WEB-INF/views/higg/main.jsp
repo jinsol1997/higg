@@ -45,13 +45,10 @@
                     <td><input type="password" name="pw" id="pw" maxlength="20"></td>
                 </tr>
                 <tr>
-                    <td>LOL 닉네임</td>
-                    <td><input type="text" name="searchNum" id="searchNum" maxlength="50"></td>
-                </tr>
-                <tr>
-                    <td colspan=2>
+                    <td>
                         <input type="button" id="login" value="로그인"/>
                     </td>
+                    <td><a href="member/register"><input type="button" id="regForm" value="회원가입"/></a></td>
                 </tr>
             </table>
         </form>
@@ -73,15 +70,6 @@
                 alert("비밀번호를 입력해 주세요.");
                 $('#pw').focus();
                 return;
-            }
-            if ($.trim($('#searchNum').val()) == '') {
-
-                var returnValue = confirm("LOL 닉네임을 입력하지 않았습니다. 계속 진행 하시겠습니까?")
-                // 선택 confirm에서 확인을 누르면 returneValue에 true가 들어가 아래 if문을 넘어가게됨
-                if (!returnValue) {
-                    $('#searchNum').focus();
-                    return;
-                }
             }
             $('#loginFrm').submit();
         });
