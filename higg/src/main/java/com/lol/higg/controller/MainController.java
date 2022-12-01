@@ -38,15 +38,17 @@ public class MainController {
         Gson gson = new Gson();
         SummonerDTO summonerDTO = gson.fromJson(result, SummonerDTO.class);
 
-        String puuid = summonerDTO.getPuuid();
+        session.setAttribute("summonerDTO", summonerDTO);
 
-        url = "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=10&" + ApiKey.key;
-
-        result = restTemplate.getForObject(url, String.class, httpHeaders);
-
-        String[] gameCode = gson.fromJson(result, String[].class);
-
-        session.setAttribute("gameCode", gameCode);
+//        String puuid = summonerDTO.getPuuid();
+//
+//        url = "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=10&" + ApiKey.key;
+//
+//        result = restTemplate.getForObject(url, String.class, httpHeaders);
+//
+//        String[] gameCode = gson.fromJson(result, String[].class);
+//
+//        session.setAttribute("gameCode", gameCode);
 
         return "redirect:/higg/list";
     }

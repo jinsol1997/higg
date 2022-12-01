@@ -2,12 +2,14 @@ package com.lol.higg.controller;
 
 import com.google.gson.Gson;
 import com.lol.higg.dto.lol.MatchDTO;
+import com.lol.higg.dto.lol.SummonerDTO;
 import com.lol.higg.util.ApiKey;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
@@ -22,42 +24,37 @@ import java.util.ArrayList;
 public class ListController {
 
     @GetMapping()
-    public void listForm(HttpSession session) {
-        log.info("list get 진입 ...");
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + session.getAttribute("gameCode"));
+    public void listForm(HttpSession session, Model model) {
 
-        String[] gameCode = (String[]) session.getAttribute("gameCode");
-        log.info(gameCode);
+        SummonerDTO summonerDTO = (SummonerDTO) session.getAttribute("summonerDTO");
+        session.invalidate();
 
-        MatchDTO[] matchDTO = new MatchDTO[gameCode.length];
+        model.addAttribute("summonerDTO", summonerDTO);
 
-
-        log.info(gameCode[0]);
+        String url = "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + summonerDTO.getPuuid() + "/ids?start=0&count=10&" + ApiKey.key;
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
+        Gson gson = new Gson();
 
-//            httpHeaders.add("user-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36");
-//            httpHeaders.add("Accept-Language", "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7");
-//            httpHeaders.add("Accept-Charset", "application/x-www-form-urlencoded; charset=UTF-8");
-//            httpHeaders.add("Origin", "https://developer.riotgames.com");
+        String result = restTemplate.getForObject(url, String.class, httpHeaders);
+        String[] gameCode = gson.fromJson(result, String[].class);
 
-        HttpEntity<String> entity = new HttpEntity<>("", httpHeaders);
+        MatchDTO[] matchDTO = new MatchDTO[gameCode.length];
 
-        String url = "https://asia.api.riotgames.com/lol/match/v5/matches/" + gameCode[0] + "?" + ApiKey.key;
+        url = "https://asia.api.riotgames.com/lol/match/v5/matches/" + gameCode[0] + "?" + ApiKey.key;
 
-        matchDTO[0] = restTemplate.getForObject(url, MatchDTO.class);
+        for(int i=0; i< gameCode.length; i++){
+            url = "https://asia.api.riotgames.com/lol/match/v5/matches/" + gameCode[i] + "?" + ApiKey.key;
+            matchDTO[i] = restTemplate.getForObject(url, MatchDTO.class);
+        }
 
-        log.info(matchDTO[0].toString());
-        log.info(matchDTO[0].getInfo().getGameName());
+        log.info(matchDTO[0].getInfo().getParticipants());
+        for(int i=0; i<matchDTO[0].getInfo().getParticipants().size(); i++){
+            log.info(matchDTO[0].getInfo().getParticipants().get(i).getSummonerName());
+        }
 
-//        String result = restTemplate.getForObject(url, String.class, httpHeaders);
-//
-//        Gson gson = new Gson();
-//        matchDTO[0] = gson.fromJson(result, MatchDTO.class);
-
-        session.setAttribute("matchDTO", matchDTO);
-        session.invalidate();
+        model.addAttribute("matchDTO", matchDTO);
     }
 
 }
