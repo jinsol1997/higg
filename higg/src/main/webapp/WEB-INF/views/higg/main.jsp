@@ -34,7 +34,7 @@
 <c:choose>
     <c:when test="${empty sessionScope.userId}">
         <!-- 로그인이 안되어 있으면 -->
-        <form id="loginFrm" name="loginFrm" method="post">
+        <form id="loginFrm" name="loginFrm" method="post" action="/main/Login">
             <table>
                 <tr>
                     <td>아이디</td>
@@ -46,15 +46,8 @@
                 </tr>
                 <tr>
                     <td>LOL 닉네임</td>
-                    <td><input type="text" name="SearchNum" id="SearchNum" maxlength="50"></td>
+                    <td><input type="text" name="searchNum" id="searchNum" maxlength="50"></td>
                 </tr>
-                <c:if test="${msg == '실패'}">
-                    <tr>
-                        <td colspan=2>
-                            아이디 또는 패스워드가 틀렸습니다.
-                        </td>
-                    </tr>
-                </c:if>
                 <tr>
                     <td colspan=2>
                         <input type="button" id="login" value="로그인"/>
@@ -81,12 +74,12 @@
                 $('#pw').focus();
                 return;
             }
-            if ($.trim($('#SearchNum').val()) == '') {
+            if ($.trim($('#searchNum').val()) == '') {
 
                 var returnValue = confirm("LOL 닉네임을 입력하지 않았습니다. 계속 진행 하시겠습니까?")
                 // 선택 confirm에서 확인을 누르면 returneValue에 true가 들어가 아래 if문을 넘어가게됨
                 if (!returnValue) {
-                    $('#SearchNum').focus();
+                    $('#searchNum').focus();
                     return;
                 }
             }

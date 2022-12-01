@@ -9,16 +9,8 @@ import javax.servlet.http.HttpSession;
 @Service
 public class MemberServiceImpl implements MemberService {
     //사용자 Service
-    @Autowired(required = false)
-    HiggMemberDTO higgMemberDTO;
 
 
-    @Override
-    public boolean loginCheck(HiggMemberDTO higgMemberDTO, HttpSession session) {
-
-      
-        return false;
-    }
 
     @Override
     public void logout(HttpSession session) {
