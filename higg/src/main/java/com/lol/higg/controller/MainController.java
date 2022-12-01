@@ -20,8 +20,6 @@ import java.util.Arrays;
 @RequestMapping("/higg/main")
 public class MainController {
 
-    private ApiKey apiKey;
-
     @GetMapping
     public void mainForm() {
     }
@@ -33,7 +31,7 @@ public class MainController {
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>("", httpHeaders);
 
-        String url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + searchName + apiKey.getKey();
+        String url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + searchName + "?" + ApiKey.key;
 
         String result = restTemplate.getForObject(url, String.class, httpHeaders);
 
@@ -42,7 +40,7 @@ public class MainController {
 
         String puuid = summonerDTO.getPuuid();
 
-        url = "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=10&api_key=RGAPI-a52aa3a0-e3b6-4f78-829d-e280b142e8d8";
+        url = "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=10&" + ApiKey.key;
 
         result = restTemplate.getForObject(url, String.class, httpHeaders);
 

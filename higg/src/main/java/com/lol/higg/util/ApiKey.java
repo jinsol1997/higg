@@ -1,11 +1,5 @@
 package com.lol.higg.util;
 
-import lombok.Getter;
-
-
-@Getter
 public class ApiKey {
-    private static String key = "?api_key=RGAPI-a52aa3a0-e3b6-4f78-829d-e280b142e8d8";
-
-
+    public final static String key = "api_key=RGAPI-28cb3d8b-5b16-4884-8d39-3c93f505d57f";
 }
