@@ -8,12 +8,9 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
 <head>
     <title>HIGG</title>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 </head>
 <body>
 <h1>Main Form</h1>
@@ -22,15 +19,6 @@
     <input type="text" name="searchName" placeholder="검색할 소환사명을 입력해주세요.">
     <input type="submit" value="검색">
 </form>
-
-<script type="text/javascript">
-    if (typeof jQuery == 'undefined') {
-        var script = document.createElement('script');
-        script.type = "text/javascript";
-        script.src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js";
-        document.getElementsByTagName('head')[0].appendChild(script);
-    }
-</script>
 <%--
 
 세션없으면
@@ -43,14 +31,14 @@
 <c:choose>
     <c:when test="${empty sessionScope.userId}">
         <!-- 로그인이 안되어 있으면 -->
-        <form id="loginFrm" name="loginFrm" method="post">
+        <form id="loginFrm" name="loginFrm" action="loginCheck.do">
             <table>
                 <tr>
                     <td>아이디</td>
                     <td><input type="text" name="userId" id="userId" placeholder="10글자" maxlength="10"></td>
                 </tr>
                 <tr>
-                    <td>비밀번호</td>
+                    <td>패스워드</td>
                     <td><input type="password" name="passwd" id="passwd" maxlength="20"></td>
                 </tr>
                 <c:if test="${msg == '실패'}">
@@ -62,7 +50,7 @@
                 </c:if>
                 <tr>
                     <td colspan=2>
-                        <input type="button" id="login" value="로그인"/>
+                        <input type="button" id="login" value="로그인" />
                     </td>
                 </tr>
             </table>
@@ -73,24 +61,6 @@
         <a href="logout.do">로그아웃</a>
     </c:otherwise>
 </c:choose>
+
 </body>
-<script>
-    $(document).ready(function (e) {
-        $('#login').click(function () {
-            if ($.trim($('#userId').val()) == '') {
-                alert("아이디를 입력해 주세요.");
-                $('#userId').focus();
-                return;
-            } else if ($.trim($('#passwd').val()) == ''){
-                alert("비밀번호를 입력해 주세요.");
-                $('#passwd').focus();
-                return;
-            }
-            $('#loginFrm').submit();
-        });
-    });
-
-</script>
-
-
 </html>
