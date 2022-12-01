@@ -49,8 +49,8 @@ create table higg_member(
 	idx int Not null auto_increment,
     uid varchar(100) not null,
     pw varchar(100) not null,
-    SearchNum varchar(100),
-    primary key(idx)
+    primary key(idx),
+    UNIQUE KEY `uid_UNIQUE` (`uid`)
 )engine=MyISAM charset=utf8mb4;
 
 ------------------------------------------------------
