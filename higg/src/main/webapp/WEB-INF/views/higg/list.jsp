@@ -116,7 +116,7 @@
                     </c:if>
                 </td>
 
-                <td>${participants.totalDamageDealtToChampions}</td>
+                <td><progress max="100000" value="${participants.totalDamageDealtToChampions}"></progress>${participants.totalDamageDealtToChampions}</td>
                 <td>${participants.goldEarned + 500}</td>
 
                 </tr>
