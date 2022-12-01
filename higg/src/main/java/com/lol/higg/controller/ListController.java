@@ -24,12 +24,9 @@ import java.util.ArrayList;
 public class ListController {
 
     @GetMapping()
-    public void listForm(HttpSession session, Model model) {
+    public void listForm(Model model, HttpSession session) {
 
         SummonerDTO summonerDTO = (SummonerDTO) session.getAttribute("summonerDTO");
-        session.invalidate();
-
-        model.addAttribute("summonerDTO", summonerDTO);
 
         String url = "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + summonerDTO.getPuuid() + "/ids?start=0&count=10&" + ApiKey.key;
 
@@ -54,6 +51,7 @@ public class ListController {
             log.info(matchDTO[0].getInfo().getParticipants().get(i).getSummonerName());
         }
 
+        model.addAttribute("summonerDTO", summonerDTO);
         model.addAttribute("matchDTO", matchDTO);
     }
 

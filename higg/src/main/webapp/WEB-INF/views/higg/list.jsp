@@ -10,31 +10,107 @@
 <html>
 <head>
     <title>HIGG</title>
+
+    <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap/offcanvas.css" rel="stylesheet">
+
 </head>
-<body>
+<body class="bg-light">
 
-<h1>검색 결과</h1>
-닉네임 : ${summonerDTO.name} <br>
-레벨 : ${summonerDTO.summonerLevel} <br>
-아이콘 : <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${summonerDTO.profileIconId}.png"><br>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand mr-auto mr-lg-0" href="#">HIGG</a>
+    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<table border="1px">
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="post">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchName">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+
+<main role="main" class="container">
+
+    <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-primary rounded box-shadow">
+        <img class="mr-3"
+             src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${summonerDTO.profileIconId}.png"
+             alt="" width="48" height="48">
+        <div class="lh-100">
+            <h6 class="mb-0 text-white lh-100">HIGG 검색 결과</h6>
+            <small>${summonerDTO.summonerLevel}</small>
+        </div>
+    </div>
 
     <c:forEach var="matchDTO" items="${matchDTO}">
-        <tr>
-        <c:forEach var="participants" items="${matchDTO.info.participants}">
+        <table class="table table-sm table-secondary table-bordered text-center table-striped">
+            <c:forEach var="participants" items="${matchDTO.info.participants}" varStatus="loop">
+
+                <c:if test="${loop.count <= 5}">
+                    <tr style="background-color: #fff1f3">
+                </c:if>
+                <c:if test="${loop.count > 5}">
+                    <tr style="background-color: #ecf2ff">
+                </c:if>
 
                 <td>${participants.summonerName}</td>
+                <td><img
+                        src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/${participants.championName}.png">
+                    <span class="badge badge-light">lv${participants.champLevel}</span></td>
+                <td>
 
-        </c:forEach>
-        </tr>
+                </td>
+                <td>${participants.kills} / ${participants.deaths} / ${participants.assists}</td>
+                <td>
+                    <c:if test="${participants.item0 != 0}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${participants.item0}.png">
+                    </c:if>
+                    <c:if test="${participants.item1 != 0}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${participants.item1}.png">
+                    </c:if>
+                    <c:if test="${participants.item2 != 0}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${participants.item2}.png">
+                    </c:if>
+                    <c:if test="${participants.item3 != 0}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${participants.item3}.png">
+                    </c:if>
+                    <c:if test="${participants.item4 != 0}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${participants.item4}.png">
+                    </c:if>
+                    <c:if test="${participants.item5 != 0}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${participants.item5}.png">
+                    </c:if>
+                    <c:if test="${participants.item6 != 0}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${participants.item6}.png">
+                    </c:if>
+                </td>
+
+                </tr>
+
+
+            </c:forEach>
+        </table>
+        <br><br><br>
     </c:forEach>
 
-</table>
 
-<c:forEach var="matchDTO" items="${matchDTO}">
-    ${matchDTO}
-</c:forEach>
+    </div>
+
+</main>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/assets/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="js/assets/vendor/popper.min.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<script src="js/assets/js/vendor/holder.min.js"></script>
+<script src="js/bootstrap/offcanvas.js"></script>
 
 </body>
 </html>

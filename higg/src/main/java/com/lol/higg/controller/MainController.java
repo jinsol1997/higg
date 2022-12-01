@@ -6,6 +6,7 @@ import com.lol.higg.util.ApiKey;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,17 +39,8 @@ public class MainController {
         Gson gson = new Gson();
         SummonerDTO summonerDTO = gson.fromJson(result, SummonerDTO.class);
 
-        session.setAttribute("summonerDTO", summonerDTO);
 
-//        String puuid = summonerDTO.getPuuid();
-//
-//        url = "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=10&" + ApiKey.key;
-//
-//        result = restTemplate.getForObject(url, String.class, httpHeaders);
-//
-//        String[] gameCode = gson.fromJson(result, String[].class);
-//
-//        session.setAttribute("gameCode", gameCode);
+        session.setAttribute("summonerDTO", summonerDTO);
 
         return "redirect:/higg/list";
     }

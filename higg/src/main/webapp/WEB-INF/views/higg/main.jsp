@@ -48,7 +48,7 @@
                     <td>
                         <input type="button" id="login" value="로그인"/>
                     </td>
-                    <td><a href="member/register"><input type="button" id="regForm" value="회원가입"/></a></td>
+                    <td><a href="/member/register"><input type="button" id="regForm" value="회원가입"/></a></td>
                 </tr>
             </table>
         </form>
