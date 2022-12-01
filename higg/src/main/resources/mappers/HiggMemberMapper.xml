@@ -8,5 +8,9 @@
         insert into higg_member (uid, pw) values (#{uid}, #{pw})
     </insert>
 
+    <select id="selectByIdPw" resultType="com.lol.higg.dto.HiggMemberDTO">
+        select * from higg_member where uid=#{param1} and pw=#{param2}
+    </select>
+
 
 </mapper>
