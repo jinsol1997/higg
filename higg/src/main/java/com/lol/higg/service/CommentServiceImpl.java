@@ -12,4 +12,9 @@ public class CommentServiceImpl implements CommentService {
     @Autowired(required = false)
     HiggCommentDTO higgCommentDTO;
 
+    @Override
+    public int insertComment(HiggCommentDTO commentDTO) {
+
+        return 0;
+    }
 }

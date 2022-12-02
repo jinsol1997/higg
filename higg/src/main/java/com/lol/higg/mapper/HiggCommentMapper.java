@@ -9,10 +9,8 @@ import java.util.List;
 public interface HiggCommentMapper {
     //댓글Mapper
 
-    //전체
-    List<HiggCommentDTO> selectAll();
-    // 검색된 게시글에 댓글 들
-    List<HiggCommentDTO> selectByOption();
+    public int insertComment(HiggCommentDTO higgCommentDTO);
 
+    public List<HiggCommentDTO> selectChat(String roomseq);
 
 }
