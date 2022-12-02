@@ -25,7 +25,7 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
         }
 
         log.info("비로그인 상태");
-        response.sendRedirect("/login");
+        response.sendRedirect("/higg/main");
         return false;
     }
 

@@ -330,6 +330,10 @@
     </div>
 </main>
 
+<form action="/in" method="post">
+    <input type="text" name="message">
+</form>
+
 
 <script>window.jQuery || document.write('<script src="js/assets/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="js/assets/vendor/popper.min.js"></script>
