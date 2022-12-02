@@ -9,6 +9,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class MetadataDTO {
 
     private String dataVersion;
