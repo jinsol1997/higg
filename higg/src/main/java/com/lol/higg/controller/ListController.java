@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -54,12 +55,16 @@ public class ListController {
         result = restTemplate.getForObject(url, String.class, httpHeaders);
         Set<LeagueEntryDTO> setDTO = gson.fromJson(result, Set.class);
 
+        log.info("@@@@@@@@@@@@@@@setDTO : " + setDTO);
+
         Iterator<LeagueEntryDTO> iterator = setDTO.iterator();
-        LeagueEntryDTO leagueEntryDTO = iterator.next();
+        while (iterator.hasNext()){
+            log.info("!!!!!!!!!!!!!!!!!!!!!" + iterator.next());
+        }
 
         model.addAttribute("summonerDTO", summonerDTO);
         model.addAttribute("matchDTO", matchDTO);
-        model.addAttribute("leagueEntryDTO", leagueEntryDTO);
+        //model.addAttribute("leagueEntryDTO", leagueEntryDTO);
     }
 
 }
