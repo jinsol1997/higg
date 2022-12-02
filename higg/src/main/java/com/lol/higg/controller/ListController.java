@@ -52,33 +52,21 @@ public class ListController {
 
         log.info(">>>>>>>>>>>>>>>>>>>>> : " + result);
 
-
-        ///////////////////////////////////////////////////////////////
-
-//        List<Map<String, String>> myList = gson.fromJson(result, new TypeToken<List<Map<String, String>>>() {
-//        }.getType());
-//
-//        Map<String, String> myMap = myList.get(0);
-//
-//        Set keySet = myMap.keySet();
-//
-//        Iterator<String> itr = keySet.iterator();
-//
-//        while (itr.hasNext()) {
-//            String mapkey = itr.next();
-//            String value = myMap.get(mapkey);
-//
-//            log.info(">>>>>>>>>>>>>" + mapkey + " = " + value);
-//        }
-
-        /////////////////////////////////////////////////////
-
         List<LeagueEntryDTO> list = gson.fromJson(result, new TypeToken<List<LeagueEntryDTO>>() {
         }.getType());
         log.info(list);
 
         for (int i = 0; i < list.size(); i++) {
             log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + list.get(i));
+
+            if(list.get(i) != null){
+
+                char[] chars = list.get(i).getTier().toLowerCase().toCharArray();
+                chars[0] = Character.toUpperCase(chars[0]);
+                list.get(i).setTier(String.valueOf(chars));
+                log.info(list.get(i).getTier());
+
+            }
 
             if(list.get(i).getQueueType().equals("RANKED_SOLO_5x5")){
                 model.addAttribute("soloRankEntryDTO", list.get(i));
