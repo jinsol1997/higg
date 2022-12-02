@@ -4,17 +4,11 @@ import com.google.gson.Gson;
 import com.lol.higg.dto.lol.SummonerDTO;
 import com.lol.higg.util.ApiKey;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 
 @Log4j2
 @Controller
@@ -30,7 +24,6 @@ public class MainController {
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
-        HttpEntity<String> entity = new HttpEntity<>("", httpHeaders);
 
         String url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + searchName + "?" + ApiKey.key;
 
@@ -38,7 +31,6 @@ public class MainController {
 
         Gson gson = new Gson();
         SummonerDTO summonerDTO = gson.fromJson(result, SummonerDTO.class);
-
 
         session.setAttribute("summonerDTO", summonerDTO);
 
