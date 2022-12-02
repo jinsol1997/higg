@@ -26,21 +26,13 @@
         var searchNum = document.querySelector('#searchNum').value;
         var message = document.querySelector('#message').value;
 
-        console.log("가져온 데이터" + message + searchNum);
-        $.ajax({
-            type: 'POST',
-            url: '/in',
-            contentType: 'application/json',
-            dataType: 'Json',
-            data: JSON.stringify({searchNum: searchNum, message: message}),
-            success: function (data) {
-                alert("성공" + data)
-            },
-            error: function (data) {
-                alert("실패" + data)
-            }, // 요청 실패.
-
-        })
+        axios.post('/in',
+            {
+                "searchNum": searchNum,
+                "message": "message",
+            })
+            .than(res => console.log(res))
+            .catch(err => console.log(err))
     }
 
 

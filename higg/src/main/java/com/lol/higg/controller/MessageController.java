@@ -31,7 +31,7 @@ public class MessageController {
         // HiggCommentDTO commentDTO = commentService.insertComment(sear, mess);
 
         //log.info("commentDTO값 확인 ->" + commentDTO);
-        return "redirect:/member/Comment";
+        return "member/Comment";
     }
 
 }
