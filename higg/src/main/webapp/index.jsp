@@ -10,6 +10,7 @@
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
 <a href="/higg/main">main</a>
-
+<br><br>
+<a href="/in">채팅 Test</a>
 </body>
 </html>
