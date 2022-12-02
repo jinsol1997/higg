@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <title>HIGG</title>
@@ -16,11 +17,16 @@
     <link href="/css/bootstrap/offcanvas.css" rel="stylesheet">
 
     <style>
-        img{
+        img {
             width: 40px;
             height: 40px;
         }
     </style>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
 
 </head>
 <body class="bg-light">
@@ -142,33 +148,56 @@
             left: 1550px;
             top: 150px;
         }
-        #tr_mar{
+
+        #tr_mar {
             margin: 10px;
         }
     </style>
+    <script>
+        $(document).ready(function () {
+
+            console.log(11)
+
+            $("#send").click(function () {
+                console.log("send 입장")
+               // insertChat();
+            });
+        })
+
+        function insertChat() {
+            $.ajax({
+                url: "insertChat",
+                data: {
+                    searchNum: $("#searchNum").val(),
+                    message: $("#message").val()
+                },
+                type: "post",
+                success: function (serverdata) {
+                    if (serverdata == "ok")
+                        $("#message").val("");
+                    $("#message").focus();
+                }
+            })
+        }
+    </script>
     <div id="text">
-        <table>
-            <th>댓글</th>
-            <c:forEach items="10">
-                <tr id="tr_mar">
-                    <td>아이디</td>
-                    <td>댓글내용</td>
+        <input type="hidden" id="searchNum" value="${sessionScope.searchNum}">
+        내용: <input type="text" id="message">
+        <input type="submit" id="send" value="send">
+        <br><%--
+        <table id="messageList">
+            <c:forEach items="${chatList}" var="">
+                <tr>
+                    <td>${chat.userid}</td>
+                    <td>${chat.message}</td>
+                    <td>${chat.indate}</td>
                 </tr>
-
-
             </c:forEach>
-        </table>
-        <br><br><br>
-
-
-
+        </table>--%>
     </div>
 </main>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="js/assets/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="js/assets/vendor/popper.min.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
