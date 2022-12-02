@@ -5,8 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import com.lol.higg.dto.lol.*;
 import com.lol.higg.util.ApiKey;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,30 +40,23 @@ public class ListController {
         for (int i = 0; i < gameCode.length; i++) {
             url = "https://asia.api.riotgames.com/lol/match/v5/matches/" + gameCode[i] + "?" + ApiKey.key;
             matchDTO[i] = restTemplate.getForObject(url, MatchDTO.class);
+            log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+matchDTO[i].getInfo());
+            log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+matchDTO[i].getMetadata());
         }
-
-        log.info(summonerDTO.getId());
 
         url = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + summonerDTO.getId() + "?" + ApiKey.key;
 
         result = restTemplate.getForObject(url, String.class, httpHeaders);
 
-        log.info(">>>>>>>>>>>>>>>>>>>>> : " + result);
-
         List<LeagueEntryDTO> list = gson.fromJson(result, new TypeToken<List<LeagueEntryDTO>>() {
         }.getType());
-        log.info(list);
 
         for (int i = 0; i < list.size(); i++) {
-            log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + list.get(i));
 
             if(list.get(i) != null){
-
                 char[] chars = list.get(i).getTier().toLowerCase().toCharArray();
                 chars[0] = Character.toUpperCase(chars[0]);
                 list.get(i).setTier(String.valueOf(chars));
-                log.info(list.get(i).getTier());
-
             }
 
             if(list.get(i).getQueueType().equals("RANKED_SOLO_5x5")){
@@ -73,12 +64,9 @@ public class ListController {
             } else if(list.get(i).getQueueType().equals("RANKED_FLEX_SR")){
                 model.addAttribute("teamRankEntryDTO", list.get(i));
             }
-
         }
 
         model.addAttribute("summonerDTO", summonerDTO);
         model.addAttribute("matchDTO", matchDTO);
-        //model.addAttribute("leagueEntryDTO", leagueEntryDTO);
     }
-
 }

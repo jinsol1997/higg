@@ -76,9 +76,26 @@
             </div>
         </c:if>
 
-    </div>
+    </div><br><br><br>
 
     <c:forEach var="matchDTO" items="${matchDTO}">
+        
+        <c:if test="${matchDTO.info.queueId == 420}">
+            <span class="badge bg-light">솔랭</span>
+        </c:if>
+
+        <c:if test="${matchDTO.info.queueId == 430}">
+            <span class="badge bg-light">일반</span>
+        </c:if>
+
+        <c:if test="${matchDTO.info.queueId == 440}">
+            <span class="badge bg-light">팀랭</span>
+        </c:if>
+
+        <c:if test="${matchDTO.info.queueId == 450}">
+            <span class="badge bg-light">칼바람</span>
+        </c:if>
+
         <table class="table table-sm table-secondary table-bordered text-center table-striped">
             <thead>
             <th>승패</th>
