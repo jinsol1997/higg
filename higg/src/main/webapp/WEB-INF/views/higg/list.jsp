@@ -52,6 +52,11 @@
             <h6 class="mb-0 text-white lh-100">${summonerDTO.name}</h6>
             <small>${summonerDTO.summonerLevel}</small>
         </div>
+        <div class="lh-100">
+            <img src="/image/ranked-emblems/Emblem_${leagueEntryDTO.tier}.png">
+            <small>${leagueEntryDTO.tier}${leagueEntryDTO.rank} ${leagueEntryDTO.leaguePoints}p</small>
+            <small>${leagueEntryDTO.wins}승 / ${leagueEntryDTO.losses}패 </small>
+        </div>
     </div>
 
     <c:forEach var="matchDTO" items="${matchDTO}">

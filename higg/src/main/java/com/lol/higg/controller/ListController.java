@@ -1,6 +1,8 @@
 package com.lol.higg.controller;
 
 import com.google.gson.Gson;
+import com.lol.higg.dto.lol.CustomInfoDTO;
+import com.lol.higg.dto.lol.LeagueEntryDTO;
 import com.lol.higg.dto.lol.MatchDTO;
 import com.lol.higg.dto.lol.SummonerDTO;
 import com.lol.higg.util.ApiKey;
@@ -15,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 
 @Log4j2
@@ -39,20 +42,24 @@ public class ListController {
 
         MatchDTO[] matchDTO = new MatchDTO[gameCode.length];
 
-        url = "https://asia.api.riotgames.com/lol/match/v5/matches/" + gameCode[0] + "?" + ApiKey.key;
-
-        for(int i=0; i< gameCode.length; i++){
+        for (int i = 0; i < gameCode.length; i++) {
             url = "https://asia.api.riotgames.com/lol/match/v5/matches/" + gameCode[i] + "?" + ApiKey.key;
             matchDTO[i] = restTemplate.getForObject(url, MatchDTO.class);
         }
 
-        log.info(matchDTO[0].getInfo().getParticipants());
-        for(int i=0; i<matchDTO[0].getInfo().getParticipants().size(); i++){
-            log.info(matchDTO[0].getInfo().getParticipants().get(i).getSummonerName());
-        }
+        log.info(summonerDTO.getId());
+
+        url = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + summonerDTO.getId() + "?" + ApiKey.key;
+
+        result = restTemplate.getForObject(url, String.class, httpHeaders);
+        Set<LeagueEntryDTO> setDTO = gson.fromJson(result, Set.class);
+
+        Iterator<LeagueEntryDTO> iterator = setDTO.iterator();
+        LeagueEntryDTO leagueEntryDTO = iterator.next();
 
         model.addAttribute("summonerDTO", summonerDTO);
         model.addAttribute("matchDTO", matchDTO);
+        model.addAttribute("leagueEntryDTO", leagueEntryDTO);
     }
 
 }
