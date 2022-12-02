@@ -40,8 +40,13 @@ public class ListController {
         for (int i = 0; i < gameCode.length; i++) {
             url = "https://asia.api.riotgames.com/lol/match/v5/matches/" + gameCode[i] + "?" + ApiKey.key;
             matchDTO[i] = restTemplate.getForObject(url, MatchDTO.class);
-            log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+matchDTO[i].getInfo());
-            log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+matchDTO[i].getMetadata());
+
+            for(int j=0; j< matchDTO[i].getInfo().getParticipants().size();j++){
+                log.info("닉네임 : " +matchDTO[i].getInfo().getParticipants().get(j).getSummonerName() + "스펠1 : " + matchDTO[i].getInfo().getParticipants().get(j).getSummoner1Id()
+                + "스펠2 : " + matchDTO[i].getInfo().getParticipants().get(j).getSummoner2Id()
+                );
+            }
+
         }
 
         url = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + summonerDTO.getId() + "?" + ApiKey.key;

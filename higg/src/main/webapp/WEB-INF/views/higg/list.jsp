@@ -21,6 +21,9 @@
             width: 40px;
             height: 40px;
         }
+        progress {
+            width: 100px;
+        }
     </style>
 
 
@@ -128,6 +131,103 @@
                         src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/${participants.championName}.png">
                     <span class="badge badge-light">lv${participants.champLevel}</span></td>
                 <td>
+                    <c:if test="${participants.summoner1Id == 1}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerBoost.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 3}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerExhaust.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 4}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerFlash.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 6}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerHaste.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 7}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerHeal.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 11}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerSmite.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 12}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerTeleport.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 13}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerMana.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 14}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerDot.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 21}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerBarrier.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 30}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerPoroRecall.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 31}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerPoroThrow.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 32}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerSnowball.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 39}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerSnowURFSnowball_Mark.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 54}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/Summoner_UltBookPlaceholder.png">
+                    </c:if>
+                    <c:if test="${participants.summoner1Id == 55}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/Summoner_UltBookSmitePlaceholder.png">
+                    </c:if>
+
+                    <c:if test="${participants.summoner2Id == 1}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerBoost.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 3}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerExhaust.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 4}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerFlash.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 6}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerHaste.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 7}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerHeal.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 11}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerSmite.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 12}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerTeleport.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 13}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerMana.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 14}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerDot.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 21}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerBarrier.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 30}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerPoroRecall.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 31}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerPoroThrow.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 32}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerSnowball.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 39}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/SummonerSnowURFSnowball_Mark.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 54}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/Summoner_UltBookPlaceholder.png">
+                    </c:if>
+                    <c:if test="${participants.summoner2Id == 55}">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/Summoner_UltBookSmitePlaceholder.png">
+                    </c:if>
 
                 </td>
                 <td>
