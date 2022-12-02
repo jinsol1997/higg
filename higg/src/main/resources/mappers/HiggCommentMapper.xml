@@ -2,8 +2,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lol.higg.mapper.HiggCommentMapper">
+    <select id="getList" resultType="com.lol.higg.dto.HiggCommentDTO">
+        select * from higg_command;
+    </select>
+<!--
+<insert id="insertComment" parameterType="com.lol.higg.dto.HiggCommentDTO">
+    insert into higg_command (uid, reply ,searchNum)values(#{uid},#{uid},'소주환');
 
-
+</insert>
+-->
 
 
 

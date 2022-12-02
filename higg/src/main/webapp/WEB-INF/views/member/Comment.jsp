@@ -9,9 +9,7 @@
 <html>
 <head>
     <title>Comment</title>
-    <%--<script src="http://code.jquery.com/jquery-latest.js"></script>--%>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"
-            integrity="sha256-C6CB9UYIS9UJeqinPHWTHVqh/E1uhG5Twh+Y5qFQmYg=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <style>
@@ -21,18 +19,12 @@
 <script>
 
     function send_click() {
-        var httpRequest;
-        /*input에 작성된 name데이터 가져옴*/
+
         var searchNum = document.querySelector('#searchNum').value;
         var message = document.querySelector('#message').value;
 
-        axios.post('/in',
-            {
-                "searchNum": searchNum,
-                "message": "message",
-            })
-            .than(res => console.log(res))
-            .catch(err => console.log(err))
+        const axios = req
+
     }
 
 

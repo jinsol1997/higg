@@ -9,8 +9,5 @@ import java.util.List;
 public interface HiggCommentMapper {
     //댓글Mapper
 
-    public int insertComment(HiggCommentDTO higgCommentDTO);
-
-    public List<HiggCommentDTO> selectChat(String roomseq);
-
+   List<HiggCommentDTO> getList();
 }

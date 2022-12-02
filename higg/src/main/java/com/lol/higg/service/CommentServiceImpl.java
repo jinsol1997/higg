@@ -1,6 +1,7 @@
 package com.lol.higg.service;
 
 import com.lol.higg.dto.HiggCommentDTO;
+import com.lol.higg.mapper.HiggCommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,10 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService {
     //댓글 Service
     @Autowired(required = false)
-    HiggCommentDTO higgCommentDTO;
-
+    HiggCommentMapper higgCommentMapper;
 
     @Override
-    public HiggCommentDTO insertComment(String sear, String mess) {
-        return null;
+    public List<HiggCommentDTO> getList() {
+        return (List<HiggCommentDTO>) higgCommentMapper.getList();
     }
 }
