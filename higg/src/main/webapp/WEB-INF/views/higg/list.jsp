@@ -58,11 +58,24 @@
             <h6 class="mb-0 text-white lh-100">${summonerDTO.name}</h6>
             <small>${summonerDTO.summonerLevel}</small>
         </div>
-        <div class="lh-100">
-            <img src="/image/ranked-emblems/Emblem_${leagueEntryDTO.tier}.png">
-            <small>${leagueEntryDTO.tier}${leagueEntryDTO.rank} ${leagueEntryDTO.leaguePoints}p</small>
-            <small>${leagueEntryDTO.wins}승 / ${leagueEntryDTO.losses}패 </small>
-        </div>
+
+        <c:if test="${soloRankEntryDTO ne null}">
+            <div class="lh-100">
+                <img src="/image/ranked-emblems/Emblem_${soloRankEntryDTO.tier}.png">
+                <small>SOLO RANK
+                    : ${soloRankEntryDTO.tier} ${soloRankEntryDTO.rank} ${soloRankEntryDTO.leaguePoints}p</small>
+                <small>${soloRankEntryDTO.wins}승 / ${soloRankEntryDTO.losses}패 </small>
+            </div>
+        </c:if>
+        <c:if test="${teamRankEntryDTO ne null}">
+            <div class="lh-100">
+                <img src="/image/ranked-emblems/Emblem_${teamRankEntryDTO.tier}.png">
+                <small>TEAM RANK
+                    : ${teamRankEntryDTO.tier} ${teamRankEntryDTO.rank} ${teamRankEntryDTO.leaguePoints}p</small>
+                <small>${teamRankEntryDTO.wins}승 / ${teamRankEntryDTO.losses}패 </small>
+            </div>
+        </c:if>
+
     </div>
 
     <c:forEach var="matchDTO" items="${matchDTO}">
@@ -103,7 +116,8 @@
                 <td>
                         ${participants.kills} / ${participants.deaths} / ${participants.assists}
                     <span class="badge badge-primary">
-                        <fmt:formatNumber value="${(participants.kills + participants.assists) / participants.deaths}" pattern="0.00"></fmt:formatNumber>
+                        <fmt:formatNumber value="${(participants.kills + participants.assists) / participants.deaths}"
+                                          pattern="0.00"></fmt:formatNumber>
                     </span>
                 </td>
                 <td>
@@ -130,7 +144,9 @@
                     </c:if>
                 </td>
 
-                <td><progress max="100000" value="${participants.totalDamageDealtToChampions}"></progress>${participants.totalDamageDealtToChampions}</td>
+                <td>
+                    <progress max="100000" value="${participants.totalDamageDealtToChampions}"></progress>
+                        ${participants.totalDamageDealtToChampions}</td>
                 <td>${participants.goldEarned + 500}</td>
 
                 </tr>
@@ -160,7 +176,7 @@
 
             $("#send").click(function () {
                 console.log("send 입장")
-               // insertChat();
+                // insertChat();
             });
         })
 

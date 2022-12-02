@@ -1,10 +1,8 @@
 package com.lol.higg.controller;
 
 import com.google.gson.Gson;
-import com.lol.higg.dto.lol.CustomInfoDTO;
-import com.lol.higg.dto.lol.LeagueEntryDTO;
-import com.lol.higg.dto.lol.MatchDTO;
-import com.lol.higg.dto.lol.SummonerDTO;
+import com.google.gson.reflect.TypeToken;
+import com.lol.higg.dto.lol.*;
 import com.lol.higg.util.ApiKey;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 
 @Log4j2
@@ -53,13 +49,43 @@ public class ListController {
         url = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + summonerDTO.getId() + "?" + ApiKey.key;
 
         result = restTemplate.getForObject(url, String.class, httpHeaders);
-        Set<LeagueEntryDTO> setDTO = gson.fromJson(result, Set.class);
 
-        log.info("@@@@@@@@@@@@@@@setDTO : " + setDTO);
+        log.info(">>>>>>>>>>>>>>>>>>>>> : " + result);
 
-        Iterator<LeagueEntryDTO> iterator = setDTO.iterator();
-        while (iterator.hasNext()){
-            log.info("!!!!!!!!!!!!!!!!!!!!!" + iterator.next());
+
+        ///////////////////////////////////////////////////////////////
+
+//        List<Map<String, String>> myList = gson.fromJson(result, new TypeToken<List<Map<String, String>>>() {
+//        }.getType());
+//
+//        Map<String, String> myMap = myList.get(0);
+//
+//        Set keySet = myMap.keySet();
+//
+//        Iterator<String> itr = keySet.iterator();
+//
+//        while (itr.hasNext()) {
+//            String mapkey = itr.next();
+//            String value = myMap.get(mapkey);
+//
+//            log.info(">>>>>>>>>>>>>" + mapkey + " = " + value);
+//        }
+
+        /////////////////////////////////////////////////////
+
+        List<LeagueEntryDTO> list = gson.fromJson(result, new TypeToken<List<LeagueEntryDTO>>() {
+        }.getType());
+        log.info(list);
+
+        for (int i = 0; i < list.size(); i++) {
+            log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + list.get(i));
+
+            if(list.get(i).getQueueType().equals("RANKED_SOLO_5x5")){
+                model.addAttribute("soloRankEntryDTO", list.get(i));
+            } else if(list.get(i).getQueueType().equals("RANKED_FLEX_SR")){
+                model.addAttribute("teamRankEntryDTO", list.get(i));
+            }
+
         }
 
         model.addAttribute("summonerDTO", summonerDTO);

@@ -7,6 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class LeagueEntryDTO {
     private String leagueId;
     private String summonerId;
@@ -21,6 +22,6 @@ public class LeagueEntryDTO {
     private boolean veteran;
     private boolean freshBlood;
     private boolean inactive;
-    private MiniSeriesDTO miniSeries;
+    //private MiniSeriesDTO miniSeries;
 
 }
