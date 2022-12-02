@@ -142,59 +142,6 @@
     </c:forEach>
 
     </div>
-    <style>
-        #text {
-            position: fixed;
-            left: 1550px;
-            top: 150px;
-        }
-
-        #tr_mar {
-            margin: 10px;
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-
-            console.log(11)
-
-            $("#send").click(function () {
-                console.log("send 입장")
-               // insertChat();
-            });
-        })
-
-        function insertChat() {
-            $.ajax({
-                url: "insertChat",
-                data: {
-                    searchNum: $("#searchNum").val(),
-                    message: $("#message").val()
-                },
-                type: "post",
-                success: function (serverdata) {
-                    if (serverdata == "ok")
-                        $("#message").val("");
-                    $("#message").focus();
-                }
-            })
-        }
-    </script>
-    <div id="text">
-        <input type="hidden" id="searchNum" value="${sessionScope.searchNum}">
-        내용: <input type="text" id="message">
-        <input type="submit" id="send" value="send">
-        <br><%--
-        <table id="messageList">
-            <c:forEach items="${chatList}" var="">
-                <tr>
-                    <td>${chat.userid}</td>
-                    <td>${chat.message}</td>
-                    <td>${chat.indate}</td>
-                </tr>
-            </c:forEach>
-        </table>--%>
-    </div>
 </main>
 
 
