@@ -287,46 +287,84 @@
         }
     </style>
     <script>
-        $(document).ready(function () {
 
-            console.log(11)
+        const request = {
+            get(url) {
+                return fetch(url)
+            },
+            post(url, payload) {
+                return fetch(url, {
+                    method: 'POST',
+                    headers: {'content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                })
+            },
+            put(url, payload) {
+                return fetch(url, {
+                    method: 'PUT',
+                    headers: {'content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                })
+            },
+            delete(url) {
+                return fetch(url, {method: 'DELETE'})
+            }
+        }
+
+
+        $(document).ready(function () {
 
             $("#send").click(function () {
                 console.log("send 입장")
-                // insertChat();
+                insertChat();
+            });
+            $("#rfresh").click(function () {
+                console.log("댓글 새로고침")
+                selectRefresh();
             });
         })
+        // 출력 json을 html로 변환
+        const message_span = document.querySelector('#print_message');
 
         function insertChat() {
-            $.ajax({
-                url: "insertChat",
-                data: {
-                    searchNum: $("#searchNum").val(),
-                    message: $("#message").val()
-                },
-                type: "post",
-                success: function (serverdata) {
-                    if (serverdata == "ok")
-                        $("#message").val("");
-                    $("#message").focus();
-                }
-            })
+            var sea = document.querySelector("#searchNum").value;
+            var mes = document.querySelector("#message").value;
+            console.log(" 가져온 아이디 값 확인 sea -> " + sea + " mes -> " + mes)
+            request.post('/in', {searchNum: sea, message: mes})
+                .then(response => {
+                    if (!response.ok) {
+                        return new Error(response.statusText)
+                        console.log(response)
+                    }
+                })
+                .catch(err => console.log(err))
+
+        }
+
+        function selectRefresh() {
+            request.get('/in')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+
+
+                    return response.text();
+
+                })
+                .then(list => console.log(list))
+                .catch(err => console.log(err))
+
         }
     </script>
     <div id="text">
-        <input type="hidden" id="searchNum" value="${sessionScope.searchNum}">
         내용: <input type="text" id="message">
+        <input type="hidden" id="searchNum" name="searchNum" value="세션값">
         <input type="submit" id="send" value="send">
-        <br><%--
-        <table id="messageList">
-            <c:forEach items="${chatList}" var="">
-                <tr>
-                    <td>${chat.userid}</td>
-                    <td>${chat.message}</td>
-                    <td>${chat.indate}</td>
-                </tr>
-            </c:forEach>
-        </table>--%>
+        <input type="button" onclick="selectRefresh()" id="rfresh" value="새로고침">
+        <br>
+        <pre style="border: 1px solid #0b2e13"><code id="print_message"></code></pre>
+
     </div>
 </main>
 

@@ -2,11 +2,13 @@ package com.lol.higg.service;
 
 import com.lol.higg.dto.HiggCommentDTO;
 import com.lol.higg.mapper.HiggCommentMapper;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Log4j2
 @Service
 public class CommentServiceImpl implements CommentService {
     //댓글 Service
@@ -15,6 +17,11 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<HiggCommentDTO> getList() {
-        return (List<HiggCommentDTO>) higgCommentMapper.getList();
+        return higgCommentMapper.getList();
+    }
+
+    @Override
+    public int insertComment(HiggCommentDTO higgCommentDTO) {
+        return 0;
     }
 }

@@ -10,6 +10,11 @@
 <head>
     <title>Comment</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/reply.js"></script>
+    <script layout:fragment="script  th:inline=javascript">
+
+
+    </script>
 </head>
 <body>
 <style>
@@ -20,12 +25,13 @@
 
     function send_click() {
 
-        var searchNum = document.querySelector('#searchNum').value;
-        var message = document.querySelector('#message').value;
 
-        const axios = req
+
+
 
     }
+
+
 
 
 </script>
@@ -38,16 +44,33 @@
     <form method="post" action="/in">
         <input type="submit" value="폼 전송">
     </form>
-    <br><%--
-        <table id="messageList">
-            <c:forEach items="${chatList}" var="">
-                <tr>
-                    <td>${chat.userid}</td>
-                    <td>${chat.message}</td>
-                    <td>${chat.indate}</td>
-                </tr>
-            </c:forEach>
-        </table>--%>
+    <br>
+
+    <table>
+        <thead>
+        <tr>
+            <th>아이디</th>
+            <th>글</th>
+            <th>게시글번호</th>
+        </tr>
+        </thead>
+
+    </table>
+    <div layout:fragment="content"></div>
+
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="my-4">
+                <button class="btn btn-info addReplyBtn">ADD Reply</button>
+            </div>
+            <ul class="list-group replyList">
+            </ul>
+
+        </div>
+
+    </div>
+
 </div>
 </body>
 </html>

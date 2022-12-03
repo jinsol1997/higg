@@ -11,4 +11,6 @@ public interface CommentService {
 
     List<HiggCommentDTO> getList();
 
+
+    int insertComment(HiggCommentDTO higgCommentDTO);
 }

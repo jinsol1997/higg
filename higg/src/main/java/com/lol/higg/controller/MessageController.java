@@ -7,11 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Log4j2
-@Controller
+@RestController
 @RequestMapping("/in")
 public class MessageController {
 
@@ -19,11 +18,8 @@ public class MessageController {
     CommentService commentService;
 
     @GetMapping
-    public HashMap<String, Object> getList() {
-        HashMap<String ,Object> hashMap = new HashMap<>();
-        List<HiggCommentDTO> result = commentService.getList();
-        return result;
-
+    public List<HiggCommentDTO> getList() {
+        return commentService.getList();
     }
 
     @PostMapping
@@ -34,10 +30,10 @@ public class MessageController {
         log.info("포스트 채팅컨트롤러 통과");
         log.info("받아온 메시지" + higgCommentDTO.getMessage());
         log.info("받아온 메시지" + higgCommentDTO.getSearchNum());
-        // HiggCommentDTO commentDTO = commentService.insertComment(sear, mess);
+        //HiggCommentDTO commentDTO = commentService.insertComment();
 
-        //log.info("commentDTO값 확인 ->" + commentDTO);
-        return "메시지 컨트롤러 통과";
+
+        return "메시지 컨트롤러 통과" ;
     }
 
 }
