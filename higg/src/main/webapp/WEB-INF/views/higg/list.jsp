@@ -278,7 +278,8 @@
     <style>
         #text {
             position: fixed;
-            left: 1550px;
+            /*left: 1550px;*/
+            left: 30px;
             top: 150px;
         }
 
@@ -288,7 +289,7 @@
     </style>
     <script>
 
-        const request = {
+        /*const request = {
             get(url) {
                 return fetch(url)
             },
@@ -323,8 +324,7 @@
                 selectRefresh();
             });
         })
-        // 출력 json을 html로 변환
-        const message_span = document.querySelector('#print_message');
+
 
         function insertChat() {
             var sea = document.querySelector("#searchNum").value;
@@ -334,7 +334,7 @@
                 .then(response => {
                     if (!response.ok) {
                         return new Error(response.statusText)
-                        console.log(response)
+                        console.log("값 가져온뒤 resonse값 ->" + response)
                     }
                 })
                 .catch(err => console.log(err))
@@ -342,30 +342,53 @@
         }
 
         function selectRefresh() {
+            let message_span = document.querySelector("#print_message");
+
             request.get('/in')
-                .then(response => {
+                .then( response => {
                     if (!response.ok) {
                         throw new Error(response.statusText);
                     }
 
-
-                    return response.text();
-
+                    return ( response.text()).toString();
                 })
                 .then(list => console.log(list))
                 .catch(err => console.log(err))
+*/
+
+        function getSearchList() {
+            $.ajax({
+                type: 'GET',
+                url: "/in",
+                success: function (result) {
+                    $('print_message>tbody').empty();
+                    if (result.length >= 1) {
+                        result.forEach(function (item) {
+                            str = '<tr>'
+                            str += "<td>" + item.searchNum + "</td>";
+                            str += "<td>" + item.searchNum + "</td>";
+                            str = '</tr>'
+                            $('#print_message').append(str);
+                        });
+                    }
+                }
+            });
 
         }
     </script>
-    <div id="text">
-        내용: <input type="text" id="message">
-        <input type="hidden" id="searchNum" name="searchNum" value="세션값">
-        <input type="submit" id="send" value="send">
-        <input type="button" onclick="selectRefresh()" id="rfresh" value="새로고침">
-        <br>
-        <pre style="border: 1px solid #0b2e13"><code id="print_message"></code></pre>
 
-    </div>
+    <div class="card my-4 " id="text">
+        <h5 class="card-header">Comment:</h5>
+        <div class="card-body">
+            <form name="comment-form" action="/in" method="post">
+                <div class="form-group">
+                    <input type="hidden" name="searchNum" value="검색된 닉네임(소주환)"/>
+                    <input type="hidden" name="uid" value="${sessionScope.loginInfo.uid}"/>
+                    <textarea name="message" class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
 </main>
 
 <form action="/in" method="post">

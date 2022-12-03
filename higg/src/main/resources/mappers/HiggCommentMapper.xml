@@ -5,12 +5,10 @@
     <select id="getList" resultType="com.lol.higg.dto.HiggCommentDTO">
         select * from higg_command;
     </select>
-<!--
 <insert id="insertComment" parameterType="com.lol.higg.dto.HiggCommentDTO">
-    insert into higg_command (uid, reply ,searchNum)values(#{uid},#{uid},'소주환');
+    insert into higg_command (uid, message ,searchNum)values(#{uid},#{message},#{searchNum});
 
 </insert>
--->
 
 
 

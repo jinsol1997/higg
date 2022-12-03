@@ -7,7 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface HiggCommentMapper {
-    //댓글Mapper
+   //댓글Mapper
 
    List<HiggCommentDTO> getList();
+
+   int insertComment(HiggCommentDTO higgCommentDTO);
 }

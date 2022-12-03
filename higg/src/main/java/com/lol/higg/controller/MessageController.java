@@ -5,17 +5,22 @@ import com.lol.higg.service.CommentService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Log4j2
-@RestController
+@Controller
 @RequestMapping("/in")
 public class MessageController {
 
     @Autowired
     CommentService commentService;
+
 
     @GetMapping
     public List<HiggCommentDTO> getList() {
@@ -23,17 +28,18 @@ public class MessageController {
     }
 
     @PostMapping
-    @ResponseBody
-    public String postin(@RequestBody HiggCommentDTO higgCommentDTO
-//            @RequestBody HiggCommentDTO higgCommentDTO
+    public String postin(
+            @RequestParam("searchNum") String searchNum,
+            @RequestParam("message") String message,
+            @RequestParam("uid") String uid
     ) {
-        log.info("포스트 채팅컨트롤러 통과");
-        log.info("받아온 메시지" + higgCommentDTO.getMessage());
-        log.info("받아온 메시지" + higgCommentDTO.getSearchNum());
-        //HiggCommentDTO commentDTO = commentService.insertComment();
+        HiggCommentDTO higgCommentDTO = new HiggCommentDTO();
+        higgCommentDTO.setSearchNum(searchNum);
+        higgCommentDTO.setMessage(message);
+        higgCommentDTO.setUid(uid);
+        commentService.insertComment(higgCommentDTO);
 
-
-        return "메시지 컨트롤러 통과" ;
+        return "redirect:/higg/list";
     }
 
 }
