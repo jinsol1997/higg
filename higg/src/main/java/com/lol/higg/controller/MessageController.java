@@ -5,17 +5,13 @@ import com.lol.higg.service.CommentService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Log4j2
 @Controller
-@RequestMapping("/in")
+@RequestMapping("/comment/ajaxselect")
 public class MessageController {
 
     @Autowired
@@ -23,6 +19,7 @@ public class MessageController {
 
 
     @GetMapping
+    @ResponseBody
     public List<HiggCommentDTO> getList() {
         return commentService.getList();
     }
@@ -33,6 +30,7 @@ public class MessageController {
             @RequestParam("message") String message,
             @RequestParam("uid") String uid
     ) {
+        log.info("메시지 컨트롤러");
         HiggCommentDTO higgCommentDTO = new HiggCommentDTO();
         higgCommentDTO.setSearchNum(searchNum);
         higgCommentDTO.setMessage(message);

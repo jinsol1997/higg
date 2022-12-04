@@ -21,16 +21,18 @@
             width: 40px;
             height: 40px;
         }
+
         progress {
             width: 100px;
         }
     </style>
 
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+            integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <%--   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+               integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+               crossorigin="anonymous"></script>
+   --%>
 </head>
 <body class="bg-light">
 
@@ -287,6 +289,8 @@
             margin: 10px;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
     <script>
 
         /*const request = {
@@ -355,39 +359,42 @@
                 .then(list => console.log(list))
                 .catch(err => console.log(err))
 */
+        $(document).ready(() => {
+            $("#getSearchList").click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: "/comment/ajaxselect",
+                    success: function (data) {
+                        console.log(data)
 
-        function getSearchList() {
-            $.ajax({
-                type: 'GET',
-                url: "/in",
-                success: function (result) {
-                    $('print_message>tbody').empty();
-                    if (result.length >= 1) {
-                        result.forEach(function (item) {
-                            str = '<tr>'
-                            str += "<td>" + item.searchNum + "</td>";
-                            str += "<td>" + item.searchNum + "</td>";
-                            str = '</tr>'
-                            $('#print_message').append(str);
-                        });
+                      /*  $.each(function (index, item) { // 데이터 =item
+                            $("#print_message").append(index + " "); // index가 끝날때까지
+                            $("#print_message").append(item.searchNum + " ");
+                            $("#print_message").append(item.message + "<br>");
+                        });*/
+                    },
+                    error: function () {
+                        alert('error');
                     }
-                }
+                });
             });
-
-        }
+        });
     </script>
 
     <div class="card my-4 " id="text">
         <h5 class="card-header">Comment:</h5>
         <div class="card-body">
-            <form name="comment-form" action="/in" method="post">
+            <form name="comment-form" action="/comment/ajaxselect" method="post">
                 <div class="form-group">
                     <input type="hidden" name="searchNum" value="검색된 닉네임(소주환)"/>
                     <input type="hidden" name="uid" value="${sessionScope.loginInfo.uid}"/>
                     <textarea name="message" class="form-control" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
             </form>
+            <p id="print_message">121</p>
+            <p id="print_message">121</p>
         </div>
 </main>
 
