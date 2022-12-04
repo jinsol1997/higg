@@ -13,51 +13,55 @@
 <head>
     <title>HIGG</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 </head>
 <body>
 <h1>Main Form</h1>
-
-<form method="post">
-    <input type="text" name="searchName" placeholder="검색할 소환사명을 입력해주세요.">
-    <input type="submit" value="검색">
-</form>
-<%--
-
-세션없으면
-<a>로그인페이지 이동</a>
-
-세션 있으면 등록한 롤 닉네임 보여주며 바로가기 버튼 만들어줌
-<button>나의 전적 확인하기 ${}</button>
-
---%>
+<div class="container">
+    <div>
+        <form class="row g-3" method="post">
+            <div class="col-auto">
+                <input type="text" readonly class="form-control-plaintext" value="email@example.com">
+            </div>
+            <div class="col-auto">
+                <input type="text"name="searchName" class="form-control"  placeholder="검색할 소환사명을 입력해주세요.">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">검색</button>
+            </div>
+        </form>
+    </div>
 <c:choose>
     <c:when test="${empty sessionScope.loginInfo}">
         <!-- 로그인이 안되어 있으면 -->
-        <form id="loginFrm" name="loginFrm" method="post" action="/main/Login">
-            <table>
-                <tr>
-                    <td>아이디</td>
-                    <td><input type="text" name="uid" id="uid" placeholder="10글자" maxlength="10"></td>
-                </tr>
-                <tr>
-                    <td>비밀번호</td>
-                    <td><input type="password" name="pw" id="pw" maxlength="20"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="button" id="login" value="로그인"/>
-                    </td>
-                    <td><a href="/member/register"><input type="button" id="regForm" value="회원가입"/></a></td>
-                </tr>
-            </table>
-        </form>
+        <div>
+            <form id="loginFrm" name="loginFrm" method="post" action="/main/Login">
+                <table>
+                    <tr>
+                        <td>아이디</td>
+                        <td><input type="text" name="uid" id="uid" placeholder="10글자" maxlength="10"></td>
+                    </tr>
+                    <tr>
+                        <td>비밀번호</td>
+                        <td><input type="password" name="pw" id="pw" maxlength="20"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" id="login" value="로그인"/>
+                        </td>
+                        <td><a href="/member/register"><input type="button" id="regForm" value="회원가입"/></a></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </c:when>
     <c:otherwise>
         <h3>${sessionScope.loginInfo.uid}님 환영합니다.</h3>
         <a href="/logout">로그아웃</a>
     </c:otherwise>
 </c:choose>
+</div>
 </body>
 <script>
     $(document).ready(function (e) {

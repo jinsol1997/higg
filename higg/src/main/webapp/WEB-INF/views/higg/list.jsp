@@ -280,86 +280,17 @@
     <style>
         #text {
             position: fixed;
-            /*left: 1550px;*/
-            left: 30px;
+            right: 10%;
             top: 150px;
         }
 
-        #tr_mar {
-            margin: 10px;
-        }
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <script>
 
-        /*const request = {
-            get(url) {
-                return fetch(url)
-            },
-            post(url, payload) {
-                return fetch(url, {
-                    method: 'POST',
-                    headers: {'content-Type': 'application/json'},
-                    body: JSON.stringify(payload)
-                })
-            },
-            put(url, payload) {
-                return fetch(url, {
-                    method: 'PUT',
-                    headers: {'content-Type': 'application/json'},
-                    body: JSON.stringify(payload)
-                })
-            },
-            delete(url) {
-                return fetch(url, {method: 'DELETE'})
-            }
-        }
-
-
-        $(document).ready(function () {
-
-            $("#send").click(function () {
-                console.log("send 입장")
-                insertChat();
-            });
-            $("#rfresh").click(function () {
-                console.log("댓글 새로고침")
-                selectRefresh();
-            });
-        })
-
-
-        function insertChat() {
-            var sea = document.querySelector("#searchNum").value;
-            var mes = document.querySelector("#message").value;
-            console.log(" 가져온 아이디 값 확인 sea -> " + sea + " mes -> " + mes)
-            request.post('/in', {searchNum: sea, message: mes})
-                .then(response => {
-                    if (!response.ok) {
-                        return new Error(response.statusText)
-                        console.log("값 가져온뒤 resonse값 ->" + response)
-                    }
-                })
-                .catch(err => console.log(err))
-
-        }
-
-        function selectRefresh() {
-            let message_span = document.querySelector("#print_message");
-
-            request.get('/in')
-                .then( response => {
-                    if (!response.ok) {
-                        throw new Error(response.statusText);
-                    }
-
-                    return ( response.text()).toString();
-                })
-                .then(list => console.log(list))
-                .catch(err => console.log(err))
-*/
         $(document).ready(() => {
+
             $("#getSearchList").click(function () {
                 $.ajax({
                     type: 'GET',
@@ -378,6 +309,7 @@
                     }
                 });
             });
+
         });
     </script>
 
@@ -394,7 +326,7 @@
                 <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
             </form>
             <p id="print_message">121</p>
-            <p id="print_message">121</p>
+
         </div>
 </main>
 
