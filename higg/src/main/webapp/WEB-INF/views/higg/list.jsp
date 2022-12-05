@@ -338,7 +338,6 @@
                     })">Submit
 
             </button>
-<<<<<<< Updated upstream
 
             <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
 
@@ -350,14 +349,7 @@
                         <td>내용 : ${comment.message}</td>
                     </tr>
                 </c:forEach>
-=======
-            <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
 
-
-            <table class="table table-striped table-sm" id="replylist">
->>>>>>> Stashed changes
-
-            </table>
 
         </div>
     </div>
