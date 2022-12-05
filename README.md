@@ -17,8 +17,8 @@ sha-256 해쉬알고리즘을 이용한 사용자 비밀번호 암호화
 
 DB
 ------------------------------------------------------
-create table higg_Command(
-	idx int Not null auto_increment,
+create table higg_comment(
+    idx int Not null auto_increment,
     uid varchar(100) not null,
     reply varchar(100) not null,
     searchNum varchar(100) not null,
@@ -26,7 +26,7 @@ create table higg_Command(
 )engine=MyISAM charset=utf8mb4;
 
 create table higg_member(
-	idx int Not null auto_increment,
+    idx int Not null auto_increment,
     uid varchar(100) not null,
     pw varchar(100) not null,
     primary key(idx),
