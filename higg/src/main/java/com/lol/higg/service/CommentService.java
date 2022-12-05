@@ -1,6 +1,6 @@
 package com.lol.higg.service;
 
-import com.lol.higg.dto.HiggCommentDTO;
+import com.lol.higg.dto.member.HiggCommentDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

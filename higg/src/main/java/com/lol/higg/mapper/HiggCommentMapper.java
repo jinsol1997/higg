@@ -1,6 +1,6 @@
 package com.lol.higg.mapper;
 
-import com.lol.higg.dto.HiggCommentDTO;
+import com.lol.higg.dto.member.HiggCommentDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -1,12 +1,14 @@
 package com.lol.higg.interceptor;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URI;
 
 @Log4j2
 public class AuthCheckInterceptor implements HandlerInterceptor {
@@ -25,6 +27,7 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
         }
 
         log.info("비로그인 상태");
+
         response.sendRedirect("/higg/main");
         return false;
     }

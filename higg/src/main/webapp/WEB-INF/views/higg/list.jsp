@@ -60,6 +60,7 @@
         <img class="mr-3"
              src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${summonerDTO.profileIconId}.png"
              alt="" width="48" height="48">
+
         <div class="lh-100">
             <h6 class="mb-0 text-white lh-100">${summonerDTO.name}</h6>
             <small>${summonerDTO.summonerLevel}</small>
@@ -82,10 +83,11 @@
             </div>
         </c:if>
 
-    </div><br><br><br>
+    </div>
+    <br><br><br>
 
     <c:forEach var="matchDTO" items="${matchDTO}">
-        
+
         <c:if test="${matchDTO.info.queueId == 420}">
             <span class="badge bg-light">솔랭</span>
         </c:if>
@@ -330,42 +332,23 @@
                     message : document.querySelector('#message').value
                     })">Submit
             </button>
-                   <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
-           <%-- <button type="button" id="getSearchList" class="btn btn-primary"
-                    onclick="axios.get('/comment/ajaxselect/${summonerDTO.puuid}')
-                            .then(data =>  {
-                            console.log(data),
-                            $('#replylist').html('');
-                            $.each(data,function (item){
 
-                            let html='';
-                            html += '<tr>';
-                            html += '<td>' + item.uid + '</td>';
-                            html += '<td>' + item.message + '</td>';
-                            html += '</tr>';
-                            $('#replylist').append(html);
-                            });
+            <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
 
-                            })">새로고침
-            </button>--%>
+            <table class="table table-striped table-sm" id="replylist">
 
-            <table class="table table-striped table-sm"id="replylist">
+                <c:forEach items="${comment}" var="comment">
+                    <tr>
+                        <td>글 작성자 : ${comment.uid}</td>
+                        <td>내용 : ${comment.message}</td>
+                    </tr>
+                </c:forEach>
 
-                <%--         <c:forEach items="${comment}" var="comment">
-                             <tr>
-                                 <td>글 작성자 : ${comment.uid}</td>
-                                 <td>내용 : ${comment.message}</td>
-                             </tr>
-                         </c:forEach>
-         --%>
             </table>
 
         </div>
+    </div>
 </main>
-
-<form action="/in" method="post">
-    <input type="text" name="message">
-</form>
 
 
 <script>window.jQuery || document.write('<script src="js/assets/vendor/jquery-slim.min.js"><\/script>')</script>

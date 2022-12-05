@@ -1,6 +1,6 @@
 package com.lol.higg.service;
 
-import com.lol.higg.dto.HiggCommentDTO;
+import com.lol.higg.dto.member.HiggCommentDTO;
 import com.lol.higg.mapper.HiggCommentMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.lol.higg.service;
 
 
-import com.lol.higg.dto.HiggMemberDTO;
+import com.lol.higg.dto.member.HiggMemberDTO;
 
 
 public interface MemberService {

@@ -1,6 +1,6 @@
 package com.lol.higg.mapper;
 
-import com.lol.higg.dto.HiggMemberDTO;
+import com.lol.higg.dto.member.HiggMemberDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

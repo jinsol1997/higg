@@ -1,6 +1,6 @@
 package com.lol.higg.controller;
 
-import com.lol.higg.dto.HiggMemberDTO;
+import com.lol.higg.dto.member.HiggMemberDTO;
 import com.lol.higg.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;

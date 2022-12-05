@@ -1,10 +1,9 @@
 package com.lol.higg.controller;
 
-import com.lol.higg.dto.HiggCommentDTO;
+import com.lol.higg.dto.member.HiggCommentDTO;
 import com.lol.higg.service.CommentService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,13 +27,11 @@ public class MessageController {
     }
 
     @PostMapping
-    public String postin(@RequestBody HiggCommentDTO higgCommentDTO
+    public void postin(@RequestBody HiggCommentDTO higgCommentDTO
     ) {
        log.info(higgCommentDTO + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
         commentService.insertComment(higgCommentDTO);
-
-        return "/higg/list";
     }
 
 }
