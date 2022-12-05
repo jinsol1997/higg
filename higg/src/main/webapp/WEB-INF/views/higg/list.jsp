@@ -283,14 +283,17 @@
     <style>
         #text {
             position: fixed;
-            right: 10%;
-            top: 150px;
+            right: 0px;
+            top: 32px;
+            width: 397px;
+        }
+
+        #list_tr {
+            font-size: 15px;
         }
 
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-
     <script>
         $(document).ready(() => {
             $("#getSearchList").click(function () {
@@ -300,15 +303,15 @@
                     success: function (data) {
                         console.log(data)
                         $("#replylist").html('');
-                        $.each(data, function (index, item) { // 데이터 =item
+                        $.each(data, function (index, item) {
 
                             let html = '';
-                            html += '<tr>';
+                            html += '<tr id="list_tr" ">';
                             html += '<td>' + item.uid + '</td>';
                             html += '<td>' + item.message + '</td>';
                             html += '</tr>';
 
-                            $("#replylist").append(html); // index가 끝날때까지
+                            $("#replylist").prepend(html);
                         });
                     },
                     error: function () {
@@ -326,12 +329,16 @@
                 <input type="hidden" name="uid" value="${sessionScope.loginInfo.uid}"/>
                 <textarea name="message" class="form-control" rows="3" id="message"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" onclick="axios.post('/comment/ajaxselect', {
+            <button type="submit" class="btn btn-primary" onclick="
+                    axios.post('/comment/ajaxselect', {
                     searchNum : '${summonerDTO.puuid}',
                     uid : '${sessionScope.loginInfo.uid}',
                     message : document.querySelector('#message').value
+
                     })">Submit
+
             </button>
+<<<<<<< Updated upstream
 
             <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
 
@@ -343,6 +350,12 @@
                         <td>내용 : ${comment.message}</td>
                     </tr>
                 </c:forEach>
+=======
+            <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
+
+
+            <table class="table table-striped table-sm" id="replylist">
+>>>>>>> Stashed changes
 
             </table>
 
