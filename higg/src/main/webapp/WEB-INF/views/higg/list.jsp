@@ -318,7 +318,7 @@
         <div class="card-body">
             <form name="comment-form" action="/comment/ajaxselect" method="post">
                 <div class="form-group">
-                    <input type="hidden" name="searchNum" value="검색된 닉네임(소주환)"/>
+                    <input type="hidden" name="searchNum" value="${summonerDTO.name}"/>
                     <input type="hidden" name="uid" value="${sessionScope.loginInfo.uid}"/>
                     <textarea name="message" class="form-control" rows="3"></textarea>
                 </div>
