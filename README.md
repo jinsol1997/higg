@@ -16,7 +16,9 @@ sha-256 해쉬알고리즘을 이용한 사용자 비밀번호 암호화
 
 
 DB
-------------------------------------------------------
+![image](https://user-images.githubusercontent.com/112999677/205566323-f4fce8b6-0364-4cf3-892e-a1d88f48bf9a.png)
+
+-------------------------------------------------- ----
 create table higg_comment(
     idx int Not null auto_increment,
     uid varchar(100) not null,
