@@ -5,42 +5,32 @@ import com.lol.higg.service.CommentService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Log4j2
-@Controller
+@RestController
 @RequestMapping("/comment/ajaxselect")
 public class MessageController {
 
     @Autowired
     CommentService commentService;
 
-    @GetMapping
-    @ResponseBody
-    public List<HiggCommentDTO> getList(@RequestParam("searchNum") String searchNum) {
+    @GetMapping("/{puuid}")
+    public List<HiggCommentDTO> getList(@PathVariable("puuid") String puuid, Model model) {
 
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+searchNum);
-
-        return commentService.getList(searchNum);
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+puuid);
+        model.addAttribute("comment", commentService.getList(puuid));
+        log.info("comment@@@@@@@@@@@@@@@@@@@" + commentService.getList(puuid));
+        return commentService.getList(puuid);
     }
 
     @PostMapping
-    public String postin(
-            @RequestParam("searchNum") String searchNum,
-            @RequestParam("message") String message,
-            @RequestParam("uid") String uid
+    public String postin(@RequestBody HiggCommentDTO higgCommentDTO
     ) {
-        HiggCommentDTO higgCommentDTO = new HiggCommentDTO();
-
-        higgCommentDTO.setMessage(message);
-        higgCommentDTO.setUid(uid);
-        higgCommentDTO.setSearchNum(searchNum);
-
-        log.info("메시지 컨트롤러 서치닉네임" + searchNum + message + uid);
-        log.info("메시지 컨트롤러 댓글" + message);
-        log.info("메시지 컨트롤러 로그인아이디" + uid);
+       log.info(higgCommentDTO + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
         commentService.insertComment(higgCommentDTO);
 
