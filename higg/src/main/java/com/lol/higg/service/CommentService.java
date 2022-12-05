@@ -9,7 +9,7 @@ import java.util.List;
 public interface CommentService {
     //댓글 Service interface
 
-    List<HiggCommentDTO> getList();
+    List<HiggCommentDTO> getList(String searchNum);
 
 
     int insertComment(HiggCommentDTO higgCommentDTO);

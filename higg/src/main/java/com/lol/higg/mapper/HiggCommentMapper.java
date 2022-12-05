@@ -9,7 +9,7 @@ import java.util.List;
 public interface HiggCommentMapper {
    //댓글Mapper
 
-   List<HiggCommentDTO> getList();
+   List<HiggCommentDTO> getList(String searchNum);
 
    int insertComment(HiggCommentDTO higgCommentDTO);
 }

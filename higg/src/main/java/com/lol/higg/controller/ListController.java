@@ -3,8 +3,10 @@ package com.lol.higg.controller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lol.higg.dto.lol.*;
+import com.lol.higg.service.CommentService;
 import com.lol.higg.util.ApiKey;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,9 @@ import java.util.*;
 @Controller
 @RequestMapping("/higg/list")
 public class ListController {
+
+    @Autowired
+    CommentService commentService;
 
     @GetMapping()
     public void listForm(Model model, HttpSession session) {
@@ -68,5 +73,6 @@ public class ListController {
 
         model.addAttribute("summonerDTO", summonerDTO);
         model.addAttribute("matchDTO", matchDTO);
+        model.addAttribute("comment", commentService.getList(summonerDTO.getPuuid()));
     }
 }

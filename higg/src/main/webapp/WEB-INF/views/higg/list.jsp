@@ -325,7 +325,17 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
             </form>
-            <p id="print_message">121</p>
+
+            <table class="table table-striped table-sm">
+
+                <c:forEach items="${comment}" var="comment">
+                    <tr>
+                        <td>글 작성자 : ${comment.uid}</td>
+                        <td>내용 : ${comment.message}</td>
+                    </tr>
+                </c:forEach>
+
+            </table>
 
         </div>
 </main>

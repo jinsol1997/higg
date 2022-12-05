@@ -19,8 +19,11 @@ public class MessageController {
 
     @GetMapping
     @ResponseBody
-    public List<HiggCommentDTO> getList() {
-        return commentService.getList();
+    public List<HiggCommentDTO> getList(@RequestParam("searchNum") String searchNum) {
+
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+searchNum);
+
+        return commentService.getList(searchNum);
     }
 
     @PostMapping
@@ -29,14 +32,19 @@ public class MessageController {
             @RequestParam("message") String message,
             @RequestParam("uid") String uid
     ) {
-        HiggCommentDTO higgCommentDTO = new HiggCommentDTO(uid, searchNum, message);
+        HiggCommentDTO higgCommentDTO = new HiggCommentDTO();
+
+        higgCommentDTO.setMessage(message);
+        higgCommentDTO.setUid(uid);
+        higgCommentDTO.setSearchNum(searchNum);
+
         log.info("메시지 컨트롤러 서치닉네임" + searchNum + message + uid);
         log.info("메시지 컨트롤러 댓글" + message);
         log.info("메시지 컨트롤러 로그인아이디" + uid);
 
         commentService.insertComment(higgCommentDTO);
 
-        return "redirect:/higg/list";
+        return "/higg/list";
     }
 
 }

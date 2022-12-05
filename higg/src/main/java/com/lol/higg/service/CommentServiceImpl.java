@@ -16,8 +16,8 @@ public class CommentServiceImpl implements CommentService {
     HiggCommentMapper higgCommentMapper;
 
     @Override
-    public List<HiggCommentDTO> getList() {
-        return higgCommentMapper.getList();
+    public List<HiggCommentDTO> getList(String searchNum) {
+        return higgCommentMapper.getList(searchNum);
     }
 
     @Override
