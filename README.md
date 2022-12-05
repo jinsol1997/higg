@@ -34,3 +34,4 @@ create table higg_member(
     primary key(idx),
     UNIQUE KEY `uid_UNIQUE` (`uid`)
 )engine=MyISAM charset=utf8mb4;
+
