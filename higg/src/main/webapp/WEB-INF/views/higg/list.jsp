@@ -26,7 +26,6 @@
             width: 100px;
         }
     </style>
-
     <script src="https://code.jquery.com/jquery-3.6.1.js"
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -34,6 +33,7 @@
                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
                crossorigin="anonymous"></script>
    --%>
+
 </head>
 <body class="bg-light">
 
@@ -293,67 +293,72 @@
         }
 
     </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script>
-        $(document).ready(() => {
-            $("#getSearchList").click(function () {
-                $.ajax({
-                    type: 'GET',
-                    url: '/comment/ajaxselect/${summonerDTO.puuid}',
-                    success: function (data) {
-                        console.log(data)
-                        $("#replylist").html('');
-                        $.each(data, function (index, item) {
 
-                            let html = '';
-                            html += '<tr id="list_tr" ">';
-                            html += '<td>' + item.uid + '</td>';
-                            html += '<td>' + item.reply + '</td>';
-                            html += '</tr>';
 
-                            $("#replylist").prepend(html);
-                        });
-                    },
-                    error: function () {
-                        alert('error');
-                    }
-                });
-            });
-        });
-    </script>
     <div class="card my-4 " id="text">
-        <h5 class="card-header">Comment:</h5>
+        <h5 class="card-header">댓글</h5>
         <div class="card-body">
             <div class="form-group">
                 <input type="hidden" name="searchNum" value="${summonerDTO.puuid}"/>
                 <input type="hidden" name="uid" value="${sessionScope.loginInfo.uid}"/>
                 <textarea name="message" class="form-control" rows="3" id="message"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" onclick="
-                    axios.post('/comment/ajaxselect', {
-                    puuid : '${summonerDTO.puuid}',
-                    uid : '${sessionScope.loginInfo.uid}',
-                    reply : document.querySelector('#message').value
-                    })">Submit
-            </button>
-
-            <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
+            <button type="button" class="btn btn-primary" onclick='postsubmit()'>Submit</button>
+            <%-- axios.post(
+     '/comment/ajaxselect', {
+     puuid : '${summonerDTO.puuid}',
+     uid : '${sessionScope.loginInfo.uid}',
+     reply : document.querySelector('#message').value
+     })"--%>
+            <button type="button" onclick="getSearchList()" class="btn btn-primary">새로고침</button>
 
             <table class="table table-striped table-sm" id="replylist">
-
-                <c:forEach items="${comment}" var="comment">
-                    <tr>
-                        <td>글 작성자 : ${comment.uid}</td>
-                        <td>내용 : ${comment.reply}</td>
-                    </tr>
-                </c:forEach>
-
-
+            </table>
         </div>
     </div>
 </main>
 
+<script>
+    $(window).load(getSearchList())
 
+    /* ajax,axios */
+    function getSearchList() {
+        $.ajax({
+            type: 'GET',
+            url: '/comment/ajaxselect/${summonerDTO.puuid}',
+            success: function (data) {
+                console.log(data)
+                $("#replylist").html('');
+                $.each(data, function (index, item) {
+
+                    let html = '';
+                    html += '<tr id="list_tr" ">';
+                    html += '<td>' + item.uid + '</td>';
+                    html += '<td>' + item.reply + '</td>';
+                    html += '</tr>';
+
+                    /*$("#replylist").prepend(html);*/
+                    $("#replylist").append(html);
+                });
+
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    };
+
+    function postsubmit() {
+        axios.post('/comment/ajaxselect', {
+            puuid: '${summonerDTO.puuid}',
+            uid: '${sessionScope.loginInfo.uid}',
+            reply: document.querySelector('#message').value
+        })
+            /*댓글 입력 후 새로고침*/
+            .finally(getSearchList());
+    }
+
+</script>
 <script>window.jQuery || document.write('<script src="js/assets/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="js/assets/vendor/popper.min.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>

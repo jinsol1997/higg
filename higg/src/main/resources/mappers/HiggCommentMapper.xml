@@ -3,7 +3,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lol.higg.mapper.HiggCommentMapper">
     <select id="getList" resultType="com.lol.higg.dto.member.HiggCommentDTO">
-        select * from higg_comment where puuid=#{puuid}<!-- order by idx desc-->;
+        select * from higg_comment where puuid=#{puuid} order by idx desc;
     </select>
     <insert id="insertComment" parameterType="com.lol.higg.dto.member.HiggCommentDTO">
         insert into higg_comment (uid, reply ,puuid)values(#{uid},#{reply},#{puuid});
