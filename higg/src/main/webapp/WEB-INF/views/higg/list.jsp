@@ -286,12 +286,13 @@
             right: 0px;
             top: 32px;
             width: 397px;
+            height: 100%;
+            overflow: auto;
         }
 
         #list_tr {
             font-size: 15px;
         }
-
     </style>
 
 
@@ -301,7 +302,8 @@
             <div class="form-group">
                 <input type="hidden" name="searchNum" value="${summonerDTO.puuid}"/>
                 <input type="hidden" name="uid" value="${sessionScope.loginInfo.uid}"/>
-                <textarea name="message" class="form-control" rows="3" id="message"></textarea>
+                <textarea name="message" class="form-control" rows="4" cols="50" id="message"
+                          placeholder="댓글을 입력하세요"></textarea>
             </div>
             <button type="button" class="btn btn-primary" onclick='postsubmit()'>Submit</button>
             <%-- axios.post(
@@ -333,7 +335,7 @@
 
                     let html = '';
                     html += '<tr id="list_tr" ">';
-                    html += '<td>' + item.uid + '</td>';
+                    html += '<td>' + item.uid + ':</td>';
                     html += '<td>' + item.reply + '</td>';
                     html += '</tr>';
 
@@ -349,13 +351,19 @@
     };
 
     function postsubmit() {
+        if (document.querySelector('#message').value == "") {
+            alert("댓글 입력 후 submit버튼을 눌러주세요")
+            return;
+        }
         axios.post('/comment/ajaxselect', {
             puuid: '${summonerDTO.puuid}',
             uid: '${sessionScope.loginInfo.uid}',
             reply: document.querySelector('#message').value
         })
-            /*댓글 입력 후 새로고침*/
-            .finally(getSearchList());
+            /*댓글 입력 후 새로고침 & 입력 초기화*/
+            .finally(getSearchList(),
+                document.querySelector('#message').value = ""
+            );
     }
 
 </script>
