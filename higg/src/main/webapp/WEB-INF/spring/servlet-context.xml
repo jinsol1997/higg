@@ -30,7 +30,7 @@
     <!-- 회원 로그인 여부 체크 interceptor 등록 -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/comment/ajaxselect/**"/>
+            <mvc:mapping path="/higg/**"/>
             <bean class="com.lol.higg.interceptor.AuthCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
