@@ -16,8 +16,6 @@ public class MessageController {
 
     @Autowired
     CommentService commentService;
-    @Autowired(required = false)
-    HiggCommentDTO higgCommentDTO;
 
     @GetMapping
     @ResponseBody
@@ -31,10 +29,9 @@ public class MessageController {
             @RequestParam("message") String message,
             @RequestParam("uid") String uid
     ) {
+        HiggCommentDTO higgCommentDTO = new HiggCommentDTO(uid, searchNum, message);
         log.info("메시지 컨트롤러" + searchNum + message + uid);
-        higgCommentDTO.setSearchNum(searchNum);
-        higgCommentDTO.setMessage(message);
-        higgCommentDTO.setUid(uid);
+
         commentService.insertComment(higgCommentDTO);
 
         return "redirect:/higg/list";
