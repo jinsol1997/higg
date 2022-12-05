@@ -288,59 +288,76 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-<%--    <script>--%>
 
-<%--        $(document).ready(() => {--%>
+    <script>
+        $(document).ready(() => {
+            $("#getSearchList").click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '/comment/ajaxselect/${summonerDTO.puuid}',
+                    success: function (data) {
+                        console.log(data)
+                        $("#replylist").html('');
+                        $.each(data, function (index, item) { // 데이터 =item
 
-<%--            $("#getSearchList").click(function () {--%>
-<%--                $.ajax({--%>
-<%--                    type: 'GET',--%>
-<%--                    url: "/comment/ajaxselect",--%>
-<%--                    success: function (data) {--%>
-<%--                        console.log(data)--%>
+                            let html = '';
+                            html += '<tr>';
+                            html += '<td>' + item.uid + '</td>';
+                            html += '<td>' + item.message + '</td>';
+                            html += '</tr>';
 
-<%--                      /*  $.each(function (index, item) { // 데이터 =item--%>
-<%--                            $("#print_message").append(index + " "); // index가 끝날때까지--%>
-<%--                            $("#print_message").append(item.searchNum + " ");--%>
-<%--                            $("#print_message").append(item.message + "<br>");--%>
-<%--                        });*/--%>
-<%--                    },--%>
-<%--                    error: function () {--%>
-<%--                        alert('error');--%>
-<%--                    }--%>
-<%--                });--%>
-<%--            });--%>
-
-<%--        });--%>
-<%--    </script>--%>
-
+                            $("#replylist").append(html); // index가 끝날때까지
+                        });
+                    },
+                    error: function () {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
     <div class="card my-4 " id="text">
         <h5 class="card-header">Comment:</h5>
         <div class="card-body">
-                <div class="form-group">
-                    <input type="hidden" name="searchNum" value="${summonerDTO.puuid}"/>
-                    <input type="hidden" name="uid" value="${sessionScope.loginInfo.uid}"/>
-                    <textarea name="message" class="form-control" rows="3" id="message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" onclick="axios.post('/comment/ajaxselect', {
+            <div class="form-group">
+                <input type="hidden" name="searchNum" value="${summonerDTO.puuid}"/>
+                <input type="hidden" name="uid" value="${sessionScope.loginInfo.uid}"/>
+                <textarea name="message" class="form-control" rows="3" id="message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="axios.post('/comment/ajaxselect', {
                     searchNum : '${summonerDTO.puuid}',
-                        uid : '${sessionScope.loginInfo.uid}',
-                        message : document.querySelector('#message').value
-                })">Submit</button>
-                <button type="button" id="getSearchList" class="btn btn-primary" onclick="axios.get('/comment/ajaxselect/${summonerDTO.puuid}')
-                        .then(data =>  {
-                        console.log(data)
-                        })">새로고침</button>
+                    uid : '${sessionScope.loginInfo.uid}',
+                    message : document.querySelector('#message').value
+                    })">Submit
+            </button>
+                   <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
+           <%-- <button type="button" id="getSearchList" class="btn btn-primary"
+                    onclick="axios.get('/comment/ajaxselect/${summonerDTO.puuid}')
+                            .then(data =>  {
+                            console.log(data),
+                            $('#replylist').html('');
+                            $.each(data,function (item){
 
-            <table class="table table-striped table-sm">
+                            let html='';
+                            html += '<tr>';
+                            html += '<td>' + item.uid + '</td>';
+                            html += '<td>' + item.message + '</td>';
+                            html += '</tr>';
+                            $('#replylist').append(html);
+                            });
 
-                <c:forEach items="${comment}" var="comment">
-                    <tr>
-                        <td>글 작성자 : ${comment.uid}</td>
-                        <td>내용 : ${comment.message}</td>
-                    </tr>
-                </c:forEach>
+                            })">새로고침
+            </button>--%>
 
+            <table class="table table-striped table-sm"id="replylist">
+
+                <%--         <c:forEach items="${comment}" var="comment">
+                             <tr>
+                                 <td>글 작성자 : ${comment.uid}</td>
+                                 <td>내용 : ${comment.message}</td>
+                             </tr>
+                         </c:forEach>
+         --%>
             </table>
 
         </div>
