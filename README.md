@@ -35,3 +35,7 @@ create table higg_member(
     UNIQUE KEY `uid_UNIQUE` (`uid`)
 )engine=MyISAM charset=utf8mb4;
 
+
+
+
+![image](https://user-images.githubusercontent.com/112999677/205581731-a885ba18-0c2c-4acf-b0e9-d96d646560f3.png)
