@@ -30,7 +30,9 @@ public class MessageController {
             @RequestParam("uid") String uid
     ) {
         HiggCommentDTO higgCommentDTO = new HiggCommentDTO(uid, searchNum, message);
-        log.info("메시지 컨트롤러" + searchNum + message + uid);
+        log.info("메시지 컨트롤러 서치닉네임" + searchNum + message + uid);
+        log.info("메시지 컨트롤러 댓글" + message);
+        log.info("메시지 컨트롤러 로그인아이디" + uid);
 
         commentService.insertComment(higgCommentDTO);
 
