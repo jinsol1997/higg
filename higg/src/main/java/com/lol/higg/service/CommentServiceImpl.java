@@ -24,8 +24,8 @@ public class CommentServiceImpl implements CommentService {
     public int insertComment(HiggCommentDTO higgCommentDTO) {
         log.info("서비스 ");
         log.info(higgCommentDTO.getUid());
-        log.info(higgCommentDTO.getMessage());
-        log.info(higgCommentDTO.getSearchNum());
+        log.info(higgCommentDTO.getReply());
+        log.info(higgCommentDTO.getPuuid());
         return higgCommentMapper.insertComment(higgCommentDTO);
     }
 }

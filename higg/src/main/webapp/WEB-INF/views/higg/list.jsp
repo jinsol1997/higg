@@ -308,7 +308,7 @@
                             let html = '';
                             html += '<tr id="list_tr" ">';
                             html += '<td>' + item.uid + '</td>';
-                            html += '<td>' + item.message + '</td>';
+                            html += '<td>' + item.reply + '</td>';
                             html += '</tr>';
 
                             $("#replylist").prepend(html);
@@ -331,12 +331,10 @@
             </div>
             <button type="submit" class="btn btn-primary" onclick="
                     axios.post('/comment/ajaxselect', {
-                    searchNum : '${summonerDTO.puuid}',
+                    puuid : '${summonerDTO.puuid}',
                     uid : '${sessionScope.loginInfo.uid}',
-                    message : document.querySelector('#message').value
-
+                    reply : document.querySelector('#message').value
                     })">Submit
-
             </button>
 
             <button type="button" id="getSearchList" class="btn btn-primary">새로고침</button>
@@ -346,7 +344,7 @@
                 <c:forEach items="${comment}" var="comment">
                     <tr>
                         <td>글 작성자 : ${comment.uid}</td>
-                        <td>내용 : ${comment.message}</td>
+                        <td>내용 : ${comment.reply}</td>
                     </tr>
                 </c:forEach>
 
