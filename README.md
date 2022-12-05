@@ -23,7 +23,7 @@ create table higg_comment(
     idx int Not null auto_increment,
     uid varchar(100) not null,
     reply varchar(100) not null,
-    searchNum varchar(100) not null,
+    puuid varchar(100) not null,
     primary key(idx)
 )engine=MyISAM charset=utf8mb4;
 
