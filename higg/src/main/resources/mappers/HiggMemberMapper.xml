@@ -5,7 +5,7 @@
 
 
     <insert id="insertMember" parameterType="com.lol.higg.dto.member.HiggMemberDTO">
-        insert into higg_member (uid, pw) values (#{uid}, #{pw})
+        insert into higg_member (uid, pw, salt) values (#{uid}, #{pw}, #{salt})
     </insert>
 
     <select id="selectByIdPw" resultType="com.lol.higg.dto.member.HiggMemberDTO">

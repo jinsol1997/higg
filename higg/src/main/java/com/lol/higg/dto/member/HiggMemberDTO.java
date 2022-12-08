@@ -17,6 +17,8 @@ public class HiggMemberDTO {
     //비밀번호
     private String pw;
 
+    private String salt;
+
     public HiggLoginInfo toLoginInfo() {
         return HiggLoginInfo.builder().uid(this.uid).build();
     }

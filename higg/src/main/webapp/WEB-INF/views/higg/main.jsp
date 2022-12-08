@@ -33,8 +33,7 @@
             </div>
         </form>
     </div>
-    <c:choose>
-        <c:when test="${empty sessionScope.loginInfo}">
+        <c:if test="${sessionScope.loginInfo eq null}">
             <!-- 로그인이 안되어 있으면 -->
             <div>
                 <form id="loginFrm" name="loginFrm" method="post" action="/main/Login">
@@ -56,12 +55,11 @@
                     </table>
                 </form>
             </div>
-        </c:when>
-        <c:otherwise>
+        </c:if>
+        <c:if test="${sessionScope.loginInfo ne null}">
             <h3>${sessionScope.loginInfo.uid}님 환영합니다.</h3>
             <a href="/logout">로그아웃</a>
-        </c:otherwise>
-    </c:choose>
+        </c:if>
 </div>
 </body>
 <script>
