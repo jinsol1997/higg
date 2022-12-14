@@ -11,5 +11,5 @@ public interface MemberService {
     int insetMember(HiggMemberDTO memberDTO);
 
     //로그인
-    HiggMemberDTO selectByIdPw(String uid, String pw);
+    HiggMemberDTO selectById(String uid);
 }

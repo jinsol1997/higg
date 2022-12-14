@@ -3,6 +3,7 @@ package com.lol.higg.mapper;
 import com.lol.higg.dto.member.HiggMemberDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface HiggMemberMapper {
@@ -11,6 +12,7 @@ public interface HiggMemberMapper {
     /*회원가입*/
     int insertMember(HiggMemberDTO memberDTO);
 
-    HiggMemberDTO selectByIdPw(@Param("uid") String uid, @Param("pw") String pw);
+    @Select("select * from higg_member where uid=#{uid}")
+    HiggMemberDTO selectById(String uid);
 
 }

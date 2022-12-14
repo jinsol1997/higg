@@ -22,14 +22,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public HiggMemberDTO selectByIdPw(String uid, String pw) {
-        //로그인
-        log.info("로그인 서비스 ->"+ uid+" "+pw);
-        HiggMemberDTO result = memberMapper.selectByIdPw(uid, pw);
-
-        log.info("로그인 서비스 디비통과->" + result);
-        return result;
-
+    public HiggMemberDTO selectById(String uid) {
+        return memberMapper.selectById(uid);
     }
 
 
